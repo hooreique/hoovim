@@ -44,6 +44,17 @@ return {
           force_fallback = '',
         }
       }
+
+      require('mini.indentscope').setup {
+        mappings = {
+          -- Textobjects
+          object_scope = '',
+          object_scope_with_border = '',
+          -- Motions (jump to respective border line; if not present - body line)
+          goto_top = 'm',
+          goto_bottom = 'M',
+        }
+      }
     end,
   },
 }
