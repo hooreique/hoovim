@@ -53,7 +53,8 @@ return {
           -- Motions (jump to respective border line; if not present - body line)
           goto_top = 'm',
           goto_bottom = 'M',
-        }
+        },
+        options = { indent_at_cursor = false },
       }
     end,
   },
