@@ -33,6 +33,8 @@ return {
           textobject = '/',
         }
       }
+
+      require('mini.pairs').setup {}
     end,
   },
 }
