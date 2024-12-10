@@ -1,10 +1,8 @@
-vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.wrap = true
 vim.opt.number = true
-vim.opt.timeout = false
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.undofile = true
@@ -23,15 +21,18 @@ local keys = {
   '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 
   '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+',
-  '=', '[', ']', '{', '}', '|', '\\', ';', "'", '"', ',', '.',
-  '<', '>', '/', '?', '`', '~', -- ':',
+  '=', '[', ']', '{', '}', '|', '\\', ';', "'", '"', ',',
+  '<', '>', '/', '?', '`', '~',
+  -- '.', ':',
 
   '<F1>', '<F2>', '<F3>', '<F4>', '<F5>', '<F6>', '<F7>', '<F8>',
   '<F9>', '<F10>', '<F11>', '<F12>',
 
-  '<Left>', '<Right>', '<Up>', '<Down>', '<Home>', '<End>', '<PageUp>', '<PageDown>',
+  '<Up>', '<Down>', '<Left>', '<Right>',
+  '<Home>', '<End>', '<PageUp>', '<PageDown>',
 
-  '<Space>', '<Tab>', '<CR>', '<BS>', '<Delete>', '<Insert>', -- '<Esc>',
+  '<Space>', '<Tab>', '<CR>', '<BS>', '<Delete>', '<Insert>',
+  -- '<Esc>',
 }
 
 local o = { noremap = true, nowait = true, silent = true }
@@ -58,10 +59,10 @@ local nv_maps = {
   { '<Home>' , 'g0' },
   { '<End>'  , 'g$' },
 
-  { 'h' , 'g0' },
-  { 'o' , 'g$' },
+  { 'h' , 'g0'  },
+  { 'o' , 'g$'  },
   { 'H' , 'gg0' },
-  { 'O' , 'G$' },
+  { 'O' , 'G$'  },
 
   { 'y' , '``' },
 
@@ -70,7 +71,7 @@ local nv_maps = {
   { 'F' , '<C-U>'  },
   { 'S' , '<C-D>'  },
 
-  { '<Space>' , 'zz' },
+  { '<Space><Space>' , 'zz' },
 
   { 'c' , '"zy' },
   { 'v' , '"zp' },
@@ -117,10 +118,10 @@ local n_maps = {
   { 'b' , 'gd' },
   { 'B' , 'gD' },
 
-  { '/' , '/' },
-  { '?' , '?' },
-  { '.' , 'n' },
-  { '>' , 'N' },
+  { "'" , '/' },
+  { '"' , '?' },
+  { '=' , 'n' },
+  { '-' , 'N' },
 
   { 'k' , [[:%s/\<<C-R><C-W>\>//g<Left><Left>]] },
 
@@ -132,6 +133,13 @@ local n_maps = {
   { 'q' , 'qy' },
   { 'Q' , 'q'  },
   { 'p' , '@y' },
+
+  { 'w'        , ':close<CR>'     },
+  { 'W'        , ':only<CR>'      },
+  { 'j'        , '<C-W>s'         },
+  { 'J'        , '<C-W>w'         },
+  { '<Space>=' , ':resize +3<CR>' },
+  { '<Space>-' , ':resize -3<CR>' },
 }
 
 for _, map in ipairs(n_maps) do
