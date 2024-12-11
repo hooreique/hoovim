@@ -1,5 +1,5 @@
 {
-  description = "Lua";
+  description = "Nvim Config";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -15,6 +15,7 @@
         devShells.default = pkgs.mkShell {
           buildInputs = [
             pkgs.lua-language-server
+            pkgs.nil
           ];
         };
       }

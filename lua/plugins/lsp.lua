@@ -31,8 +31,9 @@ return {
     config = function()
       local lsp = require 'lspconfig'
 
-      lsp.lua_ls.setup { on_attach = remap }
       lsp.denols.setup { on_attach = remap }
+      lsp.lua_ls.setup { on_attach = remap }
+      lsp.nil_ls.setup { on_attach = remap }
     end,
   },
 }
