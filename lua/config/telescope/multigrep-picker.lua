@@ -1,11 +1,12 @@
 local pickers = require 'telescope.pickers'
 local finders = require 'telescope.finders'
 local make_entry = require 'telescope.make_entry'
-local config = require('telescope.config').values
+local grep_previewer = require('telescope.config').values.grep_previewer
+local no_sort = require('telescope.sorters').empty()
 
 local M = {}
 
-M.find = function(opts)
+M.live_multigrep = function(opts)
   opts = opts or {}
   opts.cwd = opts.cwd or vim.uv.cwd()
 
@@ -32,7 +33,7 @@ M.find = function(opts)
 
       return vim.tbl_flatten {
         args,
-        { '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'},
+        { '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case' },
       }
     end,
   }
@@ -41,8 +42,8 @@ M.find = function(opts)
     debounce = 100,
     prompt_title = 'Multi Grep',
     finder = finder,
-    previewer = config.grep_previewer(opts),
-    sorter = require('telescope.sorters').empty(),
+    previewer = grep_previewer(opts),
+    sorter = no_sort,
   }):find()
 end
 
