@@ -31,10 +31,10 @@ M.live_multigrep = function(opts)
         table.insert(args, pieces[2])
       end
 
-      return vim.tbl_flatten {
+      return vim.iter({
         args,
         { '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case' },
-      }
+      }):flatten():totable()
     end,
   }
 
