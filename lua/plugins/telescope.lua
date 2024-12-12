@@ -26,6 +26,10 @@ return {
       vim.keymap.set('n', '<Space>ig', b.live_grep)
       vim.keymap.set('n', '<Space>ib', b.buffers)
       vim.keymap.set('n', '<Space>ih', b.help_tags)
+
+      vim.keymap.set('n', '<Space>im', function()
+        require('config.telescope.multigrep').find()
+      end)
     end,
   },
 }
