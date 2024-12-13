@@ -139,6 +139,25 @@ local n_maps = {
   { 'J'        , '<C-W>w'         },
   { '<Space>=' , ':resize +3<CR>' },
   { '<Space>-' , ':resize -3<CR>' },
+
+  { '<Space>T' , '<C-W>T' }, -- curr split -> new tab
+
+  { '<Space>t' , ':tabnew<CR>'      },
+  { '<Space>w' , ':tabonly<CR>'     },
+  { '<Space>i' , ':tabnext<CR>'     },
+  { '<Space>n' , ':tabprevious<CR>' },
+  { '<Space>h' , ':tabfirst<CR>'    },
+  { '<Space>o' , ':tablast<CR>'     },
+  { '<Space>1' , ':1tabnext<CR>'    },
+  { '<Space>2' , ':2tabnext<CR>'    },
+  { '<Space>3' , ':3tabnext<CR>'    },
+  { '<Space>4' , ':4tabnext<CR>'    },
+  { '<Space>5' , ':5tabnext<CR>'    },
+  { '<Space>6' , ':6tabnext<CR>'    },
+  { '<Space>7' , ':7tabnext<CR>'    },
+  { '<Space>8' , ':8tabnext<CR>'    },
+  { '<Space>9' , ':9tabnext<CR>'    },
+  { '<Space>0' , ':0tabnext<CR>'    },
 }
 
 for _, map in ipairs(n_maps) do

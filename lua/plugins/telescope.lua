@@ -22,14 +22,14 @@ return {
 
       t.load_extension 'fzf'
 
-      vim.keymap.set('n', '<Space>if', b.find_files)
-      vim.keymap.set('n', '<Space>ig', b.live_grep)
-      vim.keymap.set('n', '<Space>ib', b.buffers)
-      vim.keymap.set('n', '<Space>ih', b.help_tags)
+      vim.keymap.set('n', "<Space>'f", b.find_files)
+      vim.keymap.set('n', "<Space>'g", b.live_grep)
+      vim.keymap.set('n', "<Space>'b", b.buffers)
+      vim.keymap.set('n', "<Space>'h", b.help_tags)
 
       local m = require 'config.telescope.multigrep-picker'
 
-      vim.keymap.set('n', '<Space>im', m.live_multigrep)
+      vim.keymap.set('n', "<Space>'m", m.live_multigrep)
     end,
   },
 }
