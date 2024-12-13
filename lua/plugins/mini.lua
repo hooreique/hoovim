@@ -54,7 +54,7 @@ return {
           goto_top = 'm',
           goto_bottom = 'M',
         },
-        options = { indent_at_cursor = false },
+        -- options = { indent_at_cursor = false },
       }
     end,
   },
