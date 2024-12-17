@@ -32,8 +32,8 @@ local keys = {
   '<Up>', '<Down>', '<Left>', '<Right>',
   '<Home>', '<End>', '<PageUp>', '<PageDown>',
 
-  '<Space>', '<Tab>', '<CR>', '<BS>', '<Delete>', '<Insert>',
-  -- '<Esc>',
+  '<Space>', '<Tab>', '<BS>', '<Delete>', '<Insert>',
+  -- '<CR>', '<Esc>',
 }
 
 local o = { noremap = true, nowait = true, silent = true }
@@ -105,19 +105,21 @@ local n_maps = {
   { '<BS>'  , 'dhi' },
   { '<Del>' , 'xi'  },
 
-  { 't'    , 'a'     },
-  { 'r'    , 'i'     },
-  { 'T'    , 'R'     },
-  { 'R'    , 'O'     },
-  { '<CR>' , 'A<CR>' },
-  { 'g'    , 'v'     },
-  { 'G'    , 'V'     },
+  { 't' , 'a' },
+  { 'r' , 'i' },
+  { 'T' , 'R' },
+  { 'R' , 'O' },
+  { 'g' , 'v' },
+  { 'G' , 'V' },
 
   { ';' , 'A;<ESC>'   },
   { '{' , 'A<Space>{' },
 
   { 'b' , 'gd' },
   { 'B' , 'gD' },
+
+  { '<Space>u' , ':cprevious<CR>' },
+  { '<Space>e' , ':cnext<CR>' },
 
   { "'" , '/' },
   { '"' , '?' },

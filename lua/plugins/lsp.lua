@@ -6,6 +6,7 @@ local remap = function(_, bufnr)
     silent = true,
   }
 
+  vim.keymap.set('n', 'a',        vim.lsp.buf.references, opts)
   vim.keymap.set('n', 'b',        vim.lsp.buf.definition, opts)
   vim.keymap.set('n', 'B',        vim.lsp.buf.hover,      opts)
   vim.keymap.set('n', 'k',        vim.lsp.buf.rename,     opts)
