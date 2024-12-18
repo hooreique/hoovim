@@ -186,10 +186,28 @@ vim.api.nvim_create_autocmd('TermOpen', {
 
 -- 하단에 새 터미널 창 열기
 vim.keymap.set('n', '<Space>p', function()
-  vim.cmd.new()
-  vim.cmd.wincmd('J')
+  local count = vim.iter(vim.fn.winlayout())
+    :flatten(math.huge)
+    :fold({ r = 0, c = 0 }, function(cnt, v)
+      if v == 'row' then
+        cnt.r = cnt.r + 1
+      elseif v == 'col' then
+        cnt.c = cnt.c + 1
+      end
+      return cnt
+    end)
+
+  if count.r == 0 and count.c == 1 then
+    vim.cmd.wincmd 'b'
+    vim.cmd.split()
+    vim.cmd.wincmd 'b'
+  else
+    vim.cmd.new()
+    vim.cmd.wincmd 'J'
+  end
+
+  vim.api.nvim_win_set_height(0, 5)
   vim.cmd.term()
-  vim.api.nvim_win_set_height(0, 8)
 end)
 
 -- 터미널 모드에서 나오기
