@@ -186,9 +186,9 @@ vim.api.nvim_create_autocmd('TermOpen', {
 
 -- 하단에 새 터미널 창 열기
 vim.keymap.set('n', '<Space>p', function()
-  vim.cmd.vnew()
-  vim.cmd.term()
+  vim.cmd.new()
   vim.cmd.wincmd('J')
+  vim.cmd.term()
   vim.api.nvim_win_set_height(0, 8)
 end)
 
