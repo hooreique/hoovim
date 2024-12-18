@@ -170,4 +170,24 @@ end
 
 vim.notify('Not sure about hoomod? Type :q! to exit.', vim.log.levels.INFO)
 
+-- 터미널 창 구성
+vim.api.nvim_create_autocmd('TermOpen', {
+  group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
+  callback = function()
+    vim.api.nvim_set_option_value('number', false, { scope = 'local' })
+    vim.api.nvim_set_option_value('spell', false, { scope = 'local' })
+  end,
+})
+
+-- 하단에 새 터미널 창 열기
+vim.keymap.set('n', '<Space>p', function()
+  vim.cmd.vnew()
+  vim.cmd.term()
+  vim.cmd.wincmd('J')
+  vim.api.nvim_win_set_height(0, 8)
+end)
+
+-- 터미널 모드에서 나오기
+vim.keymap.set('t', '<C-\\><C-\\>', '<C-\\><C-N>', o)
+
 require 'config.lazy'
