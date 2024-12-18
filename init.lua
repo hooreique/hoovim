@@ -138,12 +138,16 @@ local n_maps = {
   { 'Q' , 'q'  },
   { 'p' , '@y' },
 
-  { 'w'        , ':close<CR>'     },
-  { 'W'        , ':only<CR>'      },
-  { 'j'        , '<C-W>s'         },
-  { 'J'        , '<C-W>w'         },
-  { '<Space>=' , ':resize +3<CR>' },
-  { '<Space>-' , ':resize -3<CR>' },
+  { 'w'        , ':close<CR>'         },
+  { 'W'        , ':only<CR>'          },
+  { 'j'        , ':wincmd s<CR>'      },
+  { 'J'        , ':wincmd v<CR>'      },
+  { '<Space>j' , ':wincmd w<CR>'      },
+  { '<Space>J' , ':wincmd W<CR>'      },
+  { '<Space>=' , ':wincmd 3+<CR>'     },
+  { '<Space>-' , ':wincmd 3-<CR>'     },
+  { '<Space>+' , ':wincmd 10><CR>'    },
+  { '<Space>_' , ':wincmd 10<LT><CR>' },
 
   { '<Space>T' , '<C-W>T' }, -- curr split -> new tab
 
