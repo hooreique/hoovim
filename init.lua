@@ -138,6 +138,13 @@ local n_maps = {
   { 'Q' , 'q'  },
   { 'p' , '@y' },
 
+  { '<Space>s'     , ':write<CR>' },
+  { '<Space>q<CR>' , ':quit<CR>'  },
+  { '<Space>qa'    , ':qa<CR>'    },
+  { '<Space>qw'    , ':wq<CR>'    },
+  { '<Space>qq'    , ':q!<CR>'    },
+  { '<Space>rr'    , ':e!<CR>'    },
+
   { 'w'        , ':close<CR>'         },
   { 'W'        , ':only<CR>'          },
   { 'j'        , ':wincmd s<CR>'      },
