@@ -122,7 +122,7 @@ local n_maps = {
   { 'B' , 'gD' },
 
   { '<Space>u' , ':cprevious<CR>' },
-  { '<Space>e' , ':cnext<CR>' },
+  { '<Space>e' , ':cnext<CR>'     },
 
   { "'" , '/' },
   { '"' , '?' },
