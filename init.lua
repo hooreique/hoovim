@@ -211,6 +211,6 @@ vim.keymap.set('n', '<Space>p', function()
 end)
 
 -- 터미널 모드에서 나오기
-vim.keymap.set('t', '<C-\\><C-\\>', '<C-\\><C-N>', o)
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-N>', o)
 
 require 'config.lazy'
