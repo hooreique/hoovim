@@ -34,17 +34,6 @@ return {
         }
       }
 
-      require('mini.pairs').setup {}
-
-      require('mini.completion').setup {
-        mappings = {
-          -- Force two-step completion
-          force_twostep = '',
-          -- Force fallback completion
-          force_fallback = '',
-        }
-      }
-
       require('mini.indentscope').setup {
         mappings = {
           -- Textobjects

@@ -13,7 +13,7 @@ vim.opt.hlsearch = false
 vim.opt.spell = true
 vim.opt.spelllang = { 'en_us' }
 
-local modes = {'n', 'v', 'o'}
+local modes = { 'n', 'v', 'o' }
 
 local keys = {
   'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
@@ -38,6 +38,7 @@ local keys = {
   -- '<CR>', '<Esc>',
 }
 
+---@type vim.keymap.set.Opts
 local o = { noremap = true, nowait = true, silent = true }
 
 for _, key in ipairs(keys) do
@@ -45,55 +46,55 @@ for _, key in ipairs(keys) do
 end
 
 local nv_maps = {
-  { '<Up>'    , 'gk' },
-  { '<Down>'  , 'gj' },
-  { '<Left>'  , 'h'  },
-  { '<Right>' , 'l'  },
+  { '<Up>',           'gk' },
+  { '<Down>',         'gj' },
+  { '<Left>',         'h' },
+  { '<Right>',        'l' },
 
-  { 'u' , 'gk'                           },
-  { 'e' , 'gj'                           },
-  { 'n' , 'h'                            },
-  { 'i' , 'l'                            },
-  { 'U' , [[?\S\s*\n\s*\n<CR>0]]         },
-  { 'E' , [[/\S\s*\n\s*\n<CR>/\S<CR>k0]] },
-  { 'N' , 'ge'                           },
-  { 'I' , 'w'                            },
+  { 'u',              'gk' },
+  { 'e',              'gj' },
+  { 'n',              'h' },
+  { 'i',              'l' },
+  { 'U',              '{' },
+  { 'E',              '}' },
+  { 'N',              'ge' },
+  { 'I',              'w' },
 
-  { '<Home>' , 'g0' },
-  { '<End>'  , 'g$' },
+  { '<Home>',         'g0' },
+  { '<End>',          'g$' },
 
-  { 'h' , 'g0'  },
-  { 'o' , 'g$'  },
-  { 'H' , 'gg0' },
-  { 'O' , 'G$'  },
+  { 'h',              'g0' },
+  { 'o',              'g$' },
+  { 'H',              'gg0' },
+  { 'O',              'G$' },
 
-  { 'y' , '``' },
+  { 'y',              '``' },
 
-  { 'f' , '3<C-Y>' },
-  { 's' , '3<C-E>' },
-  { 'F' , '<C-U>'  },
-  { 'S' , '<C-D>'  },
+  { 'f',              '3<C-Y>' },
+  { 's',              '3<C-E>' },
+  { 'F',              '<C-U>' },
+  { 'S',              '<C-D>' },
 
-  { '<Space><Space>' , 'zz' },
+  { '<Space><Space>', 'zz' },
 
-  { 'c' , '"zy' },
-  { 'v' , '"zp' },
-  { 'C' , '"+y' },
-  { 'V' , '"+p' },
+  { 'c',              '"zy' },
+  { 'v',              '"zp' },
+  { 'C',              '"+y' },
+  { 'V',              '"+p' },
 
-  { 'x' , 'x' },
+  { 'x',              'x' },
 }
 
 for _, map in ipairs(nv_maps) do
-  vim.keymap.set({'n', 'v'}, map[1], map[2], o)
+  vim.keymap.set({ 'n', 'v' }, map[1], map[2], o)
 end
 
 local v_maps = {
-  { 'd' , '"zd' },
-  { 'D' , '"+d' },
+  { 'd',     '"zd' },
+  { 'D',     '"+d' },
 
-  { '<BS>'  , 'd' },
-  { '<Del>' , 'd' },
+  { '<BS>',  'd' },
+  { '<Del>', 'd' },
 }
 
 for _, map in ipairs(v_maps) do
@@ -101,79 +102,74 @@ for _, map in ipairs(v_maps) do
 end
 
 local n_maps = {
-  { 'd' , '"zdd' },
-  { 'D' , '"+dd' },
+  { 'd',            '"zdd' },
+  { 'D',            '"+dd' },
 
-  { '<BS>'  , 'dhi' },
-  { '<Del>' , 'xi'  },
+  { '<BS>',         'dhi' },
+  { '<Del>',        'xi' },
 
-  { 't'           , 'a' },
-  { 'r'           , 'i' },
-  { 'T'           , 'R' },
-  { '<Space><CR>' , 'o' },
-  { 'R'           , 'O' },
-  { 'g'           , 'v' },
-  { 'G'           , 'V' },
+  { 't',            'a' },
+  { 'r',            'i' },
+  { 'T',            'R' },
+  { '<Space><CR>',  'o' },
+  { 'R',            'O' },
+  { 'g',            'v' },
+  { 'G',            'V' },
 
-  { ';' , 'A;<ESC>'   },
-  { '{' , 'A<Space>{' },
+  { ';',            'A;<ESC>' },
+  { '{',            'A<Space>{' },
 
-  { 'b' , 'gd' },
-  { 'B' , 'gD' },
+  { '<Space>u',     ':cprevious<CR>' },
+  { '<Space>e',     ':cnext<CR>' },
 
-  { '<Space>u' , ':cprevious<CR>' },
-  { '<Space>e' , ':cnext<CR>'     },
+  { "'",            '/' },
+  { '"',            '?' },
+  { '=',            'n' },
+  { '-',            'N' },
 
-  { "'" , '/' },
-  { '"' , '?' },
-  { '=' , 'n' },
-  { '-' , 'N' },
+  { 'z',            'u' },
+  { 'Z',            '<C-R>' },
 
-  { 'k' , [[:%s/\<<C-R><C-W>\>//g<Left><Left>]] },
+  { 'q',            'qy' },
+  { 'Q',            'q' },
+  { 'p',            '@y' },
 
-  { 'z' , 'u'     },
-  { 'Z' , '<C-R>' },
+  { '<Space>s',     ':write<CR>' },
+  { '<Space>q<CR>', ':quit<CR>' },
+  { '<Space>qa',    ':qa<CR>' },
+  { '<Space>qw',    ':wq<CR>' },
+  { '<Space>qq',    ':quit!<CR>' },
+  { '<Space>rr',    ':edit!<CR>' },
 
-  { 'q' , 'qy' },
-  { 'Q' , 'q'  },
-  { 'p' , '@y' },
+  { 'w',            ':close<CR>' },
+  { 'W',            ':only<CR>' },
+  { 'j',            ':wincmd s<CR>' },
+  { 'J',            ':wincmd v<CR>' },
+  { '<Space>j',     ':wincmd w<CR>' },
+  { '<Space>J',     ':wincmd W<CR>' },
+  { '<Space>=',     ':wincmd 3+<CR>' },
+  { '<Space>-',     ':wincmd 3-<CR>' },
+  { '<Space>+',     ':wincmd 10><CR>' },
+  { '<Space>_',     ':wincmd 10<LT><CR>' },
 
-  { '<Space>s<CR>' , ':write<CR>' },
-  { '<Space>q<CR>' , ':quit<CR>'  },
-  { '<Space>qa'    , ':qa<CR>'    },
-  { '<Space>qw'    , ':wq<CR>'    },
-  { '<Space>qq'    , ':quit!<CR>' },
-  { '<Space>rr'    , ':edit!<CR>' },
+  { '<Space>T',     '<C-W>T' }, -- curr split -> new tab
 
-  { 'w'        , ':close<CR>'         },
-  { 'W'        , ':only<CR>'          },
-  { 'j'        , ':wincmd s<CR>'      },
-  { 'J'        , ':wincmd v<CR>'      },
-  { '<Space>j' , ':wincmd w<CR>'      },
-  { '<Space>J' , ':wincmd W<CR>'      },
-  { '<Space>=' , ':wincmd 3+<CR>'     },
-  { '<Space>-' , ':wincmd 3-<CR>'     },
-  { '<Space>+' , ':wincmd 10><CR>'    },
-  { '<Space>_' , ':wincmd 10<LT><CR>' },
-
-  { '<Space>T' , '<C-W>T' }, -- curr split -> new tab
-
-  { '<Space>t' , ':tabnew<CR>'      },
-  { '<Space>w' , ':tabonly<CR>'     },
-  { '<Space>i' , ':tabnext<CR>'     },
-  { '<Space>n' , ':tabprevious<CR>' },
-  { '<Space>h' , ':tabfirst<CR>'    },
-  { '<Space>o' , ':tablast<CR>'     },
-  { '<Space>1' , ':1tabnext<CR>'    },
-  { '<Space>2' , ':2tabnext<CR>'    },
-  { '<Space>3' , ':3tabnext<CR>'    },
-  { '<Space>4' , ':4tabnext<CR>'    },
-  { '<Space>5' , ':5tabnext<CR>'    },
-  { '<Space>6' , ':6tabnext<CR>'    },
-  { '<Space>7' , ':7tabnext<CR>'    },
-  { '<Space>8' , ':8tabnext<CR>'    },
-  { '<Space>9' , ':9tabnext<CR>'    },
-  { '<Space>0' , ':0tabnext<CR>'    },
+  { '<Space>t',     ':tabnew<CR>' },
+  { '<Space>w',     ':tabonly<CR>' },
+  { '<Space>i',     ':tabnext<CR>' },
+  { '<Space>n',     ':tabprevious<CR>' },
+  { '<Space>h',     ':tabfirst<CR>' },
+  { '<Space>o',     ':tablast<CR>' },
+  { '<Space>1',     ':1tabnext<CR>' },
+  { '<Space>2',     ':2tabnext<CR>' },
+  { '<Space>3',     ':3tabnext<CR>' },
+  { '<Space>4',     ':4tabnext<CR>' },
+  { '<Space>5',     ':5tabnext<CR>' },
+  { '<Space>6',     ':6tabnext<CR>' },
+  { '<Space>7',     ':7tabnext<CR>' },
+  { '<Space>8',     ':8tabnext<CR>' },
+  { '<Space>9',     ':9tabnext<CR>' },
+  { '<Space>0',     ':0tabnext<CR>' },
 }
 
 for _, map in ipairs(n_maps) do
@@ -181,6 +177,13 @@ for _, map in ipairs(n_maps) do
 end
 
 vim.notify('Not sure about hoomod? Type :q! to exit.', vim.log.levels.INFO)
+
+vim.keymap.set('n', 'a', vim.lsp.buf.references, o)
+vim.keymap.set('n', 'b', vim.lsp.buf.definition, o)
+vim.keymap.set('n', 'B', vim.lsp.buf.hover, o)
+vim.keymap.set('n', 'k', vim.lsp.buf.rename, o)
+vim.keymap.set('n', '<Space>f', vim.lsp.buf.format, o)
+vim.keymap.set('n', '<Space>d', vim.diagnostic.open_float, o)
 
 -- 터미널 창 구성
 vim.api.nvim_create_autocmd('TermOpen', {
