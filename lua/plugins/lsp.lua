@@ -18,6 +18,7 @@ return {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
+      'saghen/blink.cmp',
       {
         "folke/lazydev.nvim",
         ft = "lua", -- only load on lua files
@@ -32,10 +33,11 @@ return {
     },
     config = function()
       local lsp = require 'lspconfig'
+      local cap = require('blink.cmp').get_lsp_capabilities()
 
-      lsp.denols.setup { on_attach = remap }
-      lsp.lua_ls.setup { on_attach = remap }
-      lsp.nil_ls.setup { on_attach = remap }
+      lsp.denols.setup { on_attach = remap, capabilities = cap }
+      lsp.lua_ls.setup { on_attach = remap, capabilities = cap }
+      lsp.nil_ls.setup { on_attach = remap, capabilities = cap }
     end,
   },
 }
