@@ -197,7 +197,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
 -- 하단에 새 터미널 창 열기
 vim.keymap.set('n', '<Space>p', function()
   vim.cmd 'botright terminal'
-  vim.api.nvim_win_set_height(0, 5)
+  vim.api.nvim_win_set_height(0, 7)
 end)
 
 -- 터미널 모드에서 나오기
