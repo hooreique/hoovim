@@ -138,12 +138,12 @@ local n_maps = {
   { 'Q' , 'q'  },
   { 'p' , '@y' },
 
-  { '<Space>s'     , ':write<CR>' },
+  { '<Space>s<CR>' , ':write<CR>' },
   { '<Space>q<CR>' , ':quit<CR>'  },
   { '<Space>qa'    , ':qa<CR>'    },
   { '<Space>qw'    , ':wq<CR>'    },
-  { '<Space>qq'    , ':q!<CR>'    },
-  { '<Space>rr'    , ':e!<CR>'    },
+  { '<Space>qq'    , ':quit!<CR>' },
+  { '<Space>rr'    , ':edit!<CR>' },
 
   { 'w'        , ':close<CR>'         },
   { 'W'        , ':only<CR>'          },
@@ -199,5 +199,14 @@ end)
 
 -- 터미널 모드에서 나오기
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-N>', o)
+
+-- 파일 브라우징
+vim.keymap.set('n', '<Space>b', function()
+  if vim.api.nvim_buf_get_name(0) == '' then
+    vim.cmd.edit '.'
+  else
+    vim.cmd.edit '%:h'
+  end
+end)
 
 require 'config.lazy'
