@@ -11,7 +11,7 @@ vim.opt.scrolloff = 8
 vim.opt.updatetime = 250
 vim.opt.hlsearch = false
 vim.opt.spell = true
-vim.opt.spelllang = { 'en_us' }
+vim.opt.spelllang = { 'en_us', 'cjk' }
 
 local modes = { 'n', 'v', 'o' }
 
