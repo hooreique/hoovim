@@ -195,10 +195,22 @@ vim.api.nvim_create_autocmd('TermOpen', {
 })
 
 -- 하단에 새 터미널 창 열기
-vim.keymap.set('n', '<Space>p', function()
+vim.keymap.set('n', '<Space>pp', function()
   vim.cmd 'botright terminal'
   vim.api.nvim_win_set_height(0, 7)
-end)
+  vim.api.nvim_command 'startinsert'
+end, o)
+
+-- 새 탭에 새 터미널 창 열기
+vim.keymap.set('n', '<Space>pn', ':tabnew<CR>:terminal<CR>i', o)
+
+-- 새 탭에서 Lazygit 열기
+vim.keymap.set('n', '<Space>pl', function()
+  vim.cmd 'tabnew'
+  vim.cmd 'terminal'
+  vim.api.nvim_command 'startinsert'
+  vim.api.nvim_input 'nix-shell -p lazygit --run lazygit'
+end, o)
 
 -- 터미널 모드에서 나오기
 vim.keymap.set('t', '<C-\\><C-\\>', '<C-\\><C-N>', o)
@@ -210,6 +222,6 @@ vim.keymap.set('n', '<Space>b', function()
   else
     vim.cmd.edit '%:h'
   end
-end)
+end, o)
 
 require 'config.lazy'
