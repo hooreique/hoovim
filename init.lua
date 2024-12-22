@@ -35,7 +35,7 @@ local keys = {
   '<Home>', '<End>', '<PageUp>', '<PageDown>',
 
   '<Space>', '<Tab>', '<BS>', '<Delete>', '<Insert>',
-  -- '<CR>', '<Esc>',
+  -- '<CR>', '<ESC>',
 }
 
 ---@type vim.keymap.set.Opts
@@ -201,7 +201,7 @@ vim.keymap.set('n', '<Space>p', function()
 end)
 
 -- 터미널 모드에서 나오기
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-N>', o)
+vim.keymap.set('t', '<C-\\><C-\\>', '<C-\\><C-N>', o)
 
 -- 파일 브라우징
 vim.keymap.set('n', '<Space>b', function()
