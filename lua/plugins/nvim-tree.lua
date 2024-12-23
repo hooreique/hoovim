@@ -28,11 +28,11 @@ return {
         vim.keymap.set('n', '<BS>', api.node.navigate.parent_close, opts 'Close Directory')
         vim.keymap.set('n', '-', api.tree.collapse_all, opts 'Collapse')
 
-        vim.keymap.set('n', 'h', '0', opts '0')
-        vim.keymap.set('n', 'o', '$', opts '$')
+        vim.keymap.set('n', 'h', '0', opts '[0]')
+        vim.keymap.set('n', 'o', '$', opts '[$]')
 
-        vim.keymap.set('n', 'f', 'k', opts 'k')
-        vim.keymap.set('n', 's', 'j', opts 'j')
+        vim.keymap.set('n', 'f', 'k', opts '[k]')
+        vim.keymap.set('n', 's', 'j', opts '[j]')
         vim.keymap.set('n', 't', api.node.open.edit, opts 'Open')
         vim.keymap.set('n', 'r', api.node.navigate.parent_close, opts 'Close Directory')
       end,
