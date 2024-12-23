@@ -154,22 +154,37 @@ local n_maps = {
 
   { '<Space>T',     '<C-W>T' }, -- curr split -> new tab
 
-  { '<Space>t',     ':tabnew<CR>' },
-  { '<Space>w',     ':tabonly<CR>' },
-  { '<Space>i',     ':tabnext<CR>' },
-  { '<Space>n',     ':tabprevious<CR>' },
-  { '<Space>h',     ':tabfirst<CR>' },
-  { '<Space>o',     ':tablast<CR>' },
-  { '<Space>1',     ':1tabnext<CR>' },
-  { '<Space>2',     ':2tabnext<CR>' },
-  { '<Space>3',     ':3tabnext<CR>' },
-  { '<Space>4',     ':4tabnext<CR>' },
-  { '<Space>5',     ':5tabnext<CR>' },
-  { '<Space>6',     ':6tabnext<CR>' },
-  { '<Space>7',     ':7tabnext<CR>' },
-  { '<Space>8',     ':8tabnext<CR>' },
-  { '<Space>9',     ':9tabnext<CR>' },
-  { '<Space>0',     ':0tabnext<CR>' },
+  { '<Space>tt',    ':tabnew .<CR>' },
+  { '<Space>tw',    ':tabonly<CR>' },
+  { '<Space>ti',    ':tabnext<CR>' },
+  { '<Space>tn',    ':tabprevious<CR>' },
+  { '<Space>th',    ':tabfirst<CR>' },
+  { '<Space>to',    ':tablast<CR>' },
+  { '<Space>t1',    ':1tabnext<CR>' },
+  { '<Space>t2',    ':2tabnext<CR>' },
+  { '<Space>t3',    ':3tabnext<CR>' },
+  { '<Space>t4',    ':4tabnext<CR>' },
+  { '<Space>t5',    ':5tabnext<CR>' },
+  { '<Space>t6',    ':6tabnext<CR>' },
+  { '<Space>t7',    ':7tabnext<CR>' },
+  { '<Space>t8',    ':8tabnext<CR>' },
+  { '<Space>t9',    ':9tabnext<CR>' },
+  { '<Space>t0',    ':0tabnext<CR>' },
+
+  { '<Space>i',     ':bnext<CR>' },
+  { '<Space>n',     ':bprevious<CR>' },
+  { '<Space>h',     ':bfirst<CR>' },
+  { '<Space>o',     ':blast<CR>' },
+  { '<Space>1',     ':bfirst<CR>' },
+  { '<Space>2',     ':bfirst | 1bnext<CR>' },
+  { '<Space>3',     ':bfirst | 2bnext<CR>' },
+  { '<Space>4',     ':bfirst | 3bnext<CR>' },
+  { '<Space>5',     ':bfirst | 4bnext<CR>' },
+  { '<Space>6',     ':bfirst | 5bnext<CR>' },
+  { '<Space>7',     ':bfirst | 6bnext<CR>' },
+  { '<Space>8',     ':bfirst | 7bnext<CR>' },
+  { '<Space>9',     ':bfirst | 8bnext<CR>' },
+  { '<Space>0',     ':bfirst | 9bnext<CR>' },
 }
 
 for _, map in ipairs(n_maps) do
@@ -177,6 +192,21 @@ for _, map in ipairs(n_maps) do
 end
 
 vim.notify('Not sure about hoomod? Type :q! to exit.', vim.log.levels.INFO)
+
+-- 현재 버퍼 빼고 전부 지우기
+vim.keymap.set('n', '<Space>w', function()
+  local cur = vim.api.nvim_get_current_buf()
+  local del = false
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if buf ~= cur and vim.api.nvim_buf_is_loaded(buf) then
+      vim.cmd.bdelete(buf)
+      del = true
+    end
+  end
+  if del then
+    vim.api.nvim_input ':echo "Deleted"<CR>'
+  end
+end, o)
 
 vim.keymap.set('n', 'a', vim.lsp.buf.references, o)
 vim.keymap.set('n', 'b', vim.lsp.buf.definition, o)
@@ -194,6 +224,12 @@ vim.api.nvim_create_autocmd('TermOpen', {
   end,
 })
 
+-- 현재 창에서 터미널 열기
+vim.keymap.set('n', '<Space>p<CR>', ':terminal<CR>i', o)
+
+-- 새 탭에서 터미널 열기
+vim.keymap.set('n', '<Space>pn', ':tabnew | terminal<CR>i', o)
+
 -- 하단에 새 터미널 창 열기
 vim.keymap.set('n', '<Space>pp', function()
   vim.cmd 'botright terminal'
@@ -201,10 +237,7 @@ vim.keymap.set('n', '<Space>pp', function()
   vim.api.nvim_command 'startinsert'
 end, o)
 
--- 새 탭에 새 터미널 창 열기
-vim.keymap.set('n', '<Space>pn', ':tabnew<CR>:terminal<CR>i', o)
-
--- 새 탭에서 Lazygit 열기
+-- Lazygit
 vim.keymap.set('n', '<Space>pl', function()
   vim.cmd 'tabnew'
   vim.cmd 'terminal'
@@ -216,7 +249,7 @@ end, o)
 vim.keymap.set('t', '<C-\\><C-\\>', '<C-\\><C-N>', o)
 
 -- 파일 브라우징
-vim.keymap.set('n', '<Space>b', function()
+vim.keymap.set('n', '<Space>.', function()
   if vim.api.nvim_buf_get_name(0) == '' then
     vim.cmd.edit '.'
   else

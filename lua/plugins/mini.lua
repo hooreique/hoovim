@@ -20,6 +20,8 @@ return {
 
       require('mini.statusline').setup {}
 
+      require('mini.tabline').setup {}
+
       require('mini.comment').setup {
         mappings = {
           -- Toggle comment for both Normal and Visual modes
