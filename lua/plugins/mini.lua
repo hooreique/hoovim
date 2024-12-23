@@ -2,6 +2,10 @@ return {
   {
     'echasnovski/mini.nvim',
     config = function()
+      require('mini.icons').setup {}
+
+      require('mini.git').setup {}
+
       require('mini.diff').setup {
         mappings = {
           apply = '',
@@ -13,14 +17,6 @@ return {
           goto_last = '',
         }
       }
-
-      require('mini.git').setup {}
-
-      require('mini.icons').setup {}
-
-      require('mini.statusline').setup {}
-
-      require('mini.tabline').setup {}
 
       require('mini.comment').setup {
         mappings = {
@@ -47,6 +43,10 @@ return {
         },
         -- options = { indent_at_cursor = false },
       }
+
+      require('mini.tabline').setup {}
+
+      require('mini.statusline').setup {}
     end,
   },
 }
