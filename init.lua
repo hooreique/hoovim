@@ -171,6 +171,7 @@ local n_maps = {
   { '<Space>t9',    ':9tabnext<CR>' },
   { '<Space>t0',    ':0tabnext<CR>' },
 
+  { '<Space>w',     ':bdelete<CR>' },
   { '<Space>i',     ':bnext<CR>' },
   { '<Space>n',     ':bprevious<CR>' },
   { '<Space>h',     ':bfirst<CR>' },
@@ -194,7 +195,7 @@ end
 vim.notify('Not sure about hoomod? Type :q! to exit.', vim.log.levels.INFO)
 
 -- 현재 버퍼 빼고 전부 지우기
-vim.keymap.set('n', '<Space>w', function()
+vim.keymap.set('n', '<Space>W', function()
   local cur = vim.api.nvim_get_current_buf()
   local del = false
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
