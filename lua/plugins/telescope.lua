@@ -32,6 +32,7 @@ return {
       vim.keymap.set('n', "<Space>'j", b.jumplist, o)
       vim.keymap.set('n', "<Space>'k", b.keymaps, o)
       vim.keymap.set('n', "<Space>'s", b.git_status, o)
+      vim.keymap.set('n', "<Space>'c", b.git_bcommits, o)
 
       local m = require 'config.telescope.multigrep-picker'
 
