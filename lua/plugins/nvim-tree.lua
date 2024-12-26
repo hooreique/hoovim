@@ -1,5 +1,5 @@
 ---@type vim.keymap.set.Opts
-local o = { noremap = true, nowait = true, silent = true }
+local o = { noremap = true, nowait = true }
 
 return {
   'nvim-tree/nvim-tree.lua',
@@ -16,7 +16,7 @@ return {
         ---@param desc string
         ---@return vim.keymap.set.Opts
         local opts = function(desc)
-          return { buffer = bufnr, desc = desc, noremap = true, nowait = true, silent = true }
+          return { buffer = bufnr, desc = desc, noremap = true, nowait = true }
         end
 
         vim.keymap.set('n', '/', api.tree.toggle_help, opts 'Help')

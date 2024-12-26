@@ -39,7 +39,7 @@ local keys = {
 }
 
 ---@type vim.keymap.set.Opts
-local o = { noremap = true, nowait = true, silent = true }
+local o = { noremap = true, nowait = true }
 
 for _, key in ipairs(keys) do
   vim.keymap.set(modes, key, '<Nop>', o)
@@ -207,6 +207,7 @@ vim.keymap.set('n', '<Space>W', function()
       del = true
     end
   end
+  -- workaround for refreshing tabline
   if del then
     vim.api.nvim_input ':echo "Deleted"<CR>'
   end
