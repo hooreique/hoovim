@@ -38,15 +38,9 @@ return {
       end,
     }
 
-    vim.keymap.set('n', '<', function()
+    vim.keymap.set('n', '`', function()
       if api.tree.is_visible() then
         api.tree.close()
-      end
-    end, o)
-
-    vim.keymap.set('n', '>', function()
-      if api.tree.is_visible() then
-        api.tree.focus()
       else
         api.tree.open()
         vim.cmd.wincmd 'p'

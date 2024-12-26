@@ -13,8 +13,6 @@ vim.opt.hlsearch = false
 vim.opt.spell = true
 vim.opt.spelllang = { 'en_us', 'cjk' }
 
-local modes = { 'n', 'v', 'o' }
-
 local keys = {
   'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
   'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
@@ -42,7 +40,7 @@ local keys = {
 local o = { noremap = true, nowait = true }
 
 for _, key in ipairs(keys) do
-  vim.keymap.set(modes, key, '<Nop>', o)
+  vim.keymap.set({ 'n', 'v', 'o' }, key, '<Nop>', o)
 end
 
 local nv_maps = {
@@ -77,9 +75,7 @@ local nv_maps = {
 
   { '<Space><Space>', 'zz' },
 
-  { 'c',              '"zy' },
   { 'v',              '"zp' },
-  { 'C',              '"+y' },
   { 'V',              '"+p' },
 
   { 'x',              'x' },
@@ -90,6 +86,8 @@ for _, map in ipairs(nv_maps) do
 end
 
 local v_maps = {
+  { 'C',     '"+y' },
+  { 'c',     '"zy' },
   { 'd',     '"zd' },
   { 'D',     '"+d' },
 
@@ -102,6 +100,8 @@ for _, map in ipairs(v_maps) do
 end
 
 local n_maps = {
+  { 'C',            '"+yy' },
+  { 'c',            '"zyy' },
   { 'd',            '"zdd' },
   { 'D',            '"+dd' },
 
@@ -119,8 +119,8 @@ local n_maps = {
   { ';',            'A;<ESC>' },
   { '{',            'A<Space>{' },
 
-  { '<Space>u',     ':cprevious<CR>' },
-  { '<Space>e',     ':cnext<CR>' },
+  { '<',            ':cprevious<CR>' },
+  { '>',            ':cnext<CR>' },
 
   { "'",            '/' },
   { '"',            '?' },
@@ -219,9 +219,15 @@ vim.keymap.set('n', 'k', vim.lsp.buf.rename, o)
 vim.keymap.set('n', '<Space>f', vim.lsp.buf.format, o)
 vim.keymap.set('n', '<Space>d', vim.diagnostic.open_float, o)
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'qf',
+  callback = function()
+    vim.api.nvim_set_option_value('spell', false, { scope = 'local' })
+  end,
+})
+
 -- 터미널 창 구성
 vim.api.nvim_create_autocmd('TermOpen', {
-  group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
   callback = function()
     vim.api.nvim_set_option_value('number', false, { scope = 'local' })
     vim.api.nvim_set_option_value('spell', false, { scope = 'local' })
