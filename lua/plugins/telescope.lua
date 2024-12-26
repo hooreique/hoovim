@@ -1,3 +1,6 @@
+---@type vim.keymap.set.Opts
+local o = { noremap = true, nowait = true }
+
 return {
   {
     'nvim-telescope/telescope.nvim',
@@ -20,15 +23,15 @@ return {
 
       t.load_extension 'fzf'
 
-      vim.keymap.set('n', "<Space>'", '<Nop>')
-      vim.keymap.set('n', "<Space>'f", b.find_files)
-      vim.keymap.set('n', "<Space>'g", b.live_grep)
-      vim.keymap.set('n', "<Space>'b", b.buffers)
-      vim.keymap.set('n', "<Space>'h", b.help_tags)
+      vim.keymap.set('n', "<Space>'", '<Nop>', o)
+      vim.keymap.set('n', "<Space>'f", b.find_files, o)
+      vim.keymap.set('n', "<Space>'g", b.live_grep, o)
+      vim.keymap.set('n', "<Space>'b", b.buffers, o)
+      vim.keymap.set('n', "<Space>'h", b.help_tags, o)
 
       local m = require 'config.telescope.multigrep-picker'
 
-      vim.keymap.set('n', "<Space>'m", m.live_multigrep)
+      vim.keymap.set('n', "<Space>'m", m.live_multigrep, o)
     end,
   },
 }
