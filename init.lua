@@ -14,10 +14,11 @@ vim.opt.spell = true
 vim.opt.spelllang = { 'en_us', 'cjk' }
 
 local keys = {
-  'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+  'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
   'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
   'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
   'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+  -- 'm',
 
   '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 
@@ -66,7 +67,8 @@ local nv_maps = {
   { 'H',              'gg0' },
   { 'O',              'G$' },
 
-  { 'y',              '``' },
+  { 'y',              '<C-O>' },
+  { 'Y',              '<C-I>' },
 
   { 'f',              '3<C-Y>' },
   { 's',              '3<C-E>' },
@@ -103,6 +105,8 @@ for _, map in ipairs(v_maps) do
 end
 
 local n_maps = {
+  { '<Space>m',     '`' },
+
   { 'C',            '"+yy' },
   { 'c',            '"zyy' },
   { 'd',            '"zdd' },

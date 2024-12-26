@@ -28,10 +28,14 @@ return {
       vim.keymap.set('n', "<Space>'g", b.live_grep, o)
       vim.keymap.set('n', "<Space>'b", b.buffers, o)
       vim.keymap.set('n', "<Space>'h", b.help_tags, o)
+      vim.keymap.set('n', "<Space>'m", b.marks, o)
+      vim.keymap.set('n', "<Space>'j", b.jumplist, o)
+      vim.keymap.set('n', "<Space>'k", b.keymaps, o)
+      vim.keymap.set('n', "<Space>'s", b.git_status, o)
 
       local m = require 'config.telescope.multigrep-picker'
 
-      vim.keymap.set('n', "<Space>'m", m.live_multigrep, o)
+      vim.keymap.set('n', "<Space>'l", m.live_multigrep, o)
     end,
   },
 }
