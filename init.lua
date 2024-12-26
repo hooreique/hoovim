@@ -135,10 +135,12 @@ local n_maps = {
   { 'p',            '@y' },
 
   { '<Space>s',     ':write<CR>' },
+  { '<Space>q',     '<Nop>' },
   { '<Space>q<CR>', ':quit<CR>' },
   { '<Space>qa',    ':qa<CR>' },
   { '<Space>qw',    ':wq<CR>' },
   { '<Space>qq',    ':quit!<CR>' },
+  { '<Space>r',     '<Nop>' },
   { '<Space>rr',    ':edit!<CR>' },
 
   { 'w',            ':close<CR>' },
@@ -154,6 +156,7 @@ local n_maps = {
 
   { '<Space>T',     '<C-W>T' }, -- curr split -> new tab
 
+  { '<Space>t',     '<Nop>' },
   { '<Space>tt',    ':tabnew .<CR>' },
   { '<Space>tw',    ':tabonly<CR>' },
   { '<Space>ti',    ':tabnext<CR>' },
@@ -224,6 +227,8 @@ vim.api.nvim_create_autocmd('TermOpen', {
     vim.api.nvim_set_option_value('spell', false, { scope = 'local' })
   end,
 })
+
+vim.keymap.set('n', '<Space>p', '<Nop>', o)
 
 -- 현재 창에서 터미널 열기
 vim.keymap.set('n', '<Space>p<CR>', ':terminal<CR>i', o)

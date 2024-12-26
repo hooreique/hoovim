@@ -13,13 +13,14 @@ return {
       t.setup {
         pickers = {
           find_files = { theme = 'ivy' },
-          help_tags  = { theme = 'ivy' },
+          help_tags  = { theme = 'dropdown' },
         },
         extensions = { fzf = {} },
       }
 
       t.load_extension 'fzf'
 
+      vim.keymap.set('n', "<Space>'", '<Nop>')
       vim.keymap.set('n', "<Space>'f", b.find_files)
       vim.keymap.set('n', "<Space>'g", b.live_grep)
       vim.keymap.set('n', "<Space>'b", b.buffers)
