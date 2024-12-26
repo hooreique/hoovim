@@ -38,8 +38,8 @@ return {
           object_scope = '',
           object_scope_with_border = '',
           -- Motions (jump to respective border line; if not present - body line)
-          goto_top = 'm',
-          goto_bottom = 'M',
+          goto_top = '<Space>m',
+          goto_bottom = '<Space>M',
         },
         -- options = { indent_at_cursor = false },
       }

@@ -44,8 +44,8 @@ for _, key in ipairs(keys) do
 end
 
 local nv_maps = {
-  { '<Up>',           'gk' },
-  { '<Down>',         'gj' },
+  { '<Up>',           'k' },
+  { '<Down>',         'j' },
   { '<Left>',         'h' },
   { '<Right>',        'l' },
 
@@ -58,8 +58,8 @@ local nv_maps = {
   { 'N',              'ge' },
   { 'I',              'w' },
 
-  { '<Home>',         'g0' },
-  { '<End>',          'g$' },
+  { '<Home>',         '0' },
+  { '<End>',          '$' },
 
   { 'h',              'g0' },
   { 'o',              'g$' },
@@ -72,6 +72,9 @@ local nv_maps = {
   { 's',              '3<C-E>' },
   { 'F',              '<C-U>' },
   { 'S',              '<C-D>' },
+
+  { '<PageUp>',       '<C-B>' },
+  { '<PageDown>',     '<C-F>' },
 
   { '<Space><Space>', 'zz' },
 
