@@ -207,9 +207,8 @@ vim.keymap.set('n', '<Space>W', function()
       del = true
     end
   end
-  -- workaround for refreshing tabline
   if del then
-    vim.api.nvim_input ':echo "Deleted"<CR>'
+    vim.api.nvim__redraw { tabline = true }
   end
 end, o)
 
