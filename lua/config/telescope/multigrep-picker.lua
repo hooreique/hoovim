@@ -40,7 +40,7 @@ M.live_multigrep = function(opts)
 
   pickers.new(opts, {
     debounce = 100,
-    prompt_title = 'Multi Grep',
+    prompt_title = 'Live Multi Grep',
     finder = finder,
     previewer = grep_previewer(opts),
     sorter = no_sort,

@@ -221,11 +221,10 @@ end, o)
 
 vim.keymap.set('n', 'a', vim.lsp.buf.references, o)
 vim.keymap.set('n', 'b', vim.lsp.buf.definition, o)
-vim.keymap.set('n', 'B', vim.lsp.buf.implementation, o)
 vim.keymap.set('n', 'k', vim.lsp.buf.rename, o)
-vim.keymap.set('n', 'K', vim.lsp.buf.hover, o)
 vim.keymap.set('n', '<Space>f', vim.lsp.buf.format, o)
-vim.keymap.set('n', '<Space>d', vim.diagnostic.open_float, o)
+vim.keymap.set('n', ',,', vim.lsp.buf.hover, o)
+vim.keymap.set('n', ',d', vim.diagnostic.open_float, o)
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'qf',
