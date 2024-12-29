@@ -12,6 +12,13 @@ vim.opt.updatetime = 250
 vim.opt.spell = true
 vim.opt.spelllang = { 'en_us', 'cjk' }
 
+-- Disable default mappings by _matchit_ built-in package
+vim.g.no_plugin_maps = true
+
+-- Disable default diagnostics navigation mappings
+pcall(vim.keymap.del, 'n', '[d')
+pcall(vim.keymap.del, 'n', ']d')
+
 local keys = {
   'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
   'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
@@ -39,6 +46,10 @@ local keys = {
 ---@type vim.keymap.set.Opts
 local o = { noremap = true, nowait = true }
 
+vim.keymap.set('n', ']', function()
+  vim.cmd [[call matchit#Match_wrapper('', 1, 'n')]]
+end, o)
+
 for _, key in ipairs(keys) do
   vim.keymap.set({ 'n', 'v', 'o' }, key, '<Nop>', o)
 end
@@ -58,7 +69,7 @@ local nv_maps = {
   { 'N',              'ge' },
   { 'I',              'w' },
 
-  { '<Home>',         '0' },
+  { '<Home>',         '^' },
   { '<End>',          '$' },
 
   { 'h',              'g0' },
@@ -97,6 +108,12 @@ local v_maps = {
 
   { '<BS>',  'd' },
   { '<Del>', 'd' },
+
+  { "'",     [[y/\<\><Left><Left><C-R>"]] },
+  { '"',     [[y?\<\><Left><Left><C-R>"]] },
+
+  { 't',     'A' },
+  { 'r',     'I' },
 }
 
 for _, map in ipairs(v_maps) do
@@ -123,15 +140,16 @@ local n_maps = {
   { 'G',            'V' },
 
   { ';',            'A;<ESC>' },
-  { '{',            'A<Space>{' },
 
   { '<',            ':cprevious<CR>' },
   { '>',            ':cnext<CR>' },
 
   { "'",            '/' },
   { '"',            '?' },
-  { '=',            'n' },
-  { '-',            'N' },
+  { '\\',           [[/\<\><Left><Left>]] },
+  { '|',            [[/\<\><Left><Left><C-R><C-W>]] },
+  { ')',            'n' },
+  { '(',            'N' },
 
   { 'z',            'u' },
   { 'Z',            '<C-R>' },
@@ -155,10 +173,10 @@ local n_maps = {
   { 'J',            ':wincmd v<CR>' },
   { '<Space>j',     ':wincmd w<CR>' },
   { '<Space>J',     ':wincmd W<CR>' },
-  { '<Space>=',     ':wincmd 3+<CR>' },
-  { '<Space>-',     ':wincmd 3-<CR>' },
-  { '<Space>+',     ':wincmd 10><CR>' },
-  { '<Space>_',     ':wincmd 10<LT><CR>' },
+  { '=',            ':wincmd 3+<CR>' },
+  { '-',            ':wincmd 3-<CR>' },
+  { '+',            ':wincmd 10><CR>' },
+  { '_',            ':wincmd 10<LT><CR>' },
 
   { '<Space>T',     '<C-W>T' }, -- curr split -> new tab
 
@@ -197,14 +215,26 @@ vim.notify('Not sure about hoomod? Type :q! to exit.', vim.log.levels.INFO)
 vim.keymap.set('n', '<Space>W', function()
   local cur = vim.api.nvim_get_current_buf()
   local del = false
+  local errors = { 'Error(s) During `:bdelete`' }
+
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
     if buf ~= cur and vim.api.nvim_buf_is_loaded(buf) then
-      vim.cmd.bdelete(buf)
-      del = true
+      local success, result = pcall(vim.cmd.bdelete, buf)
+
+      if success then
+        del = true
+      else
+        table.insert(errors, result)
+      end
     end
   end
+
   if del then
     vim.api.nvim__redraw { tabline = true }
+  end
+
+  if #errors > 1 then
+    error(table.concat(errors, '\n  '))
   end
 end, o)
 
@@ -216,7 +246,7 @@ vim.keymap.set('n', ',,', vim.lsp.buf.hover, o)
 vim.keymap.set('n', ',d', vim.diagnostic.open_float, o)
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'qf',
+  pattern = { 'checkhealth', 'qf' },
   callback = function()
     vim.api.nvim_set_option_value('spell', false, { scope = 'local' })
   end,
