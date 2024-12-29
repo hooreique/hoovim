@@ -9,7 +9,6 @@ vim.opt.smartcase = true
 vim.opt.undofile = true
 vim.opt.scrolloff = 3
 vim.opt.updatetime = 250
-vim.opt.hlsearch = false
 vim.opt.spell = true
 vim.opt.spelllang = { 'en_us', 'cjk' }
 
