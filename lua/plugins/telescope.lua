@@ -1,5 +1,12 @@
----@type vim.keymap.set.Opts
-local o = { noremap = true, nowait = true }
+---@param desc string
+---@return vim.keymap.set.Opts
+local function o(desc)
+  return {
+    noremap = true,
+    nowait = true,
+    desc = 'hoo: telescope: ' .. desc,
+  }
+end
 
 return {
   {
@@ -24,25 +31,25 @@ return {
 
       t.load_extension 'fzf'
 
-      vim.keymap.set('n', "<Space>'", '<Nop>', o)
-      vim.keymap.set('n', "<Space>''", b.builtin, o)
-      vim.keymap.set('n', "<Space>'f", b.find_files, o)
-      vim.keymap.set('n', "<Space>'g", b.live_grep, o)
-      vim.keymap.set('n', "<Space>'t", b.buffers, o)
-      vim.keymap.set('n', "<Space>'h", b.help_tags, o)
-      vim.keymap.set('n', "<Space>'m", b.marks, o)
-      vim.keymap.set('n', "<Space>'j", b.jumplist, o)
-      vim.keymap.set('n', "<Space>'k", b.keymaps, o)
-      vim.keymap.set('n', "<Space>'s", b.git_status, o)
-      vim.keymap.set('n', "<Space>'c", b.git_bcommits, o)
-      vim.keymap.set('n', "<Space>'r", b.commands, o)
-      vim.keymap.set('n', "<Space>'q", b.quickfix, o)
-      vim.keymap.set('n', "<Space>'a", b.lsp_references, o)
-      vim.keymap.set('n', "<Space>'b", b.lsp_implementations, o)
+      vim.keymap.set('n', "<Space>'", '<Nop>', o 'Leading NOP')
+      vim.keymap.set('n', "<Space>''", b.builtin, o 'Builtins')
+      vim.keymap.set('n', "<Space>'f", b.find_files, o 'Find Files')
+      vim.keymap.set('n', "<Space>'g", b.live_grep, o 'Live Grep')
+      vim.keymap.set('n', "<Space>'t", b.buffers, o 'Buffers')
+      vim.keymap.set('n', "<Space>'h", b.help_tags, o 'Help Tags')
+      vim.keymap.set('n', "<Space>'m", b.marks, o 'Marks')
+      vim.keymap.set('n', "<Space>'j", b.jumplist, o 'Jumplist')
+      vim.keymap.set('n', "<Space>'k", b.keymaps, o 'Keymaps')
+      vim.keymap.set('n', "<Space>'s", b.git_status, o 'Git Status')
+      vim.keymap.set('n', "<Space>'c", b.git_bcommits, o 'Git Commits for Buf')
+      vim.keymap.set('n', "<Space>'r", b.commands, o 'Commands')
+      vim.keymap.set('n', "<Space>'q", b.quickfix, o 'Quickfix List')
+      vim.keymap.set('n', "<Space>'a", b.lsp_references, o 'LSP Refs')
+      vim.keymap.set('n', "<Space>'b", b.lsp_implementations, o 'LSP Impls')
 
       local m = require 'config.telescope.multigrep-picker'
 
-      vim.keymap.set('n', "<Space>'l", m.live_multigrep, o)
+      vim.keymap.set('n', "<Space>'l", m.live_multigrep, o 'Live Multi Grep')
     end,
   },
 }

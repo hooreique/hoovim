@@ -6,7 +6,7 @@ local no_sort = require('telescope.sorters').empty()
 
 local M = {}
 
-M.live_multigrep = function(opts)
+function M.live_multigrep(opts)
   opts = opts or {}
   opts.cwd = opts.cwd or vim.uv.cwd()
 
@@ -31,10 +31,10 @@ M.live_multigrep = function(opts)
         table.insert(args, pieces[2])
       end
 
-      return vim.iter({
-        args,
-        { '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case' },
-      }):flatten():totable()
+      return vim.iter({ args, {
+        '--color=never', '--no-heading', '--with-filename', '--line-number',
+        '--column', '--smart-case'
+      } }):flatten():totable()
     end,
   }
 

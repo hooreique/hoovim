@@ -43,170 +43,170 @@ local keys = {
   -- '<CR>', '<ESC>',
 }
 
----@type vim.keymap.set.Opts
-local o = { noremap = true, nowait = true }
-
-vim.keymap.set('n', ']', function()
-  vim.cmd [[call matchit#Match_wrapper('', 1, 'n')]]
-end, o)
+---@param desc string
+---@return vim.keymap.set.Opts
+local function o(desc)
+  return { noremap = true, nowait = true, desc = 'hoo: ' .. desc }
+end
 
 for _, key in ipairs(keys) do
-  vim.keymap.set({ 'n', 'v', 'o' }, key, '<Nop>', o)
+  vim.keymap.set({ 'n', 'v', 'o' }, key, '<Nop>', o 'Plain -> NOP')
 end
 
 local nv_maps = {
-  { '<Up>',           'k' },
-  { '<Down>',         'j' },
-  { '<Left>',         'h' },
-  { '<Right>',        'l' },
+  { '<Up>',           'k',      'Muggle Up' },
+  { '<Down>',         'j',      'Muggle Down' },
+  { '<Left>',         'h',      'Muggle Left' },
+  { '<Right>',        'l',      'Muggle Right' },
 
-  { 'u',              'gk' },
-  { 'e',              'gj' },
-  { 'n',              'h' },
-  { 'i',              'l' },
-  { 'U',              '{' },
-  { 'E',              '}' },
-  { 'N',              'ge' },
-  { 'I',              'w' },
+  { 'u',              'gk',     'Up (Vari Cell)' },
+  { 'e',              'gj',     'Down (Vari Cell)' },
+  { 'n',              'h',      'Left' },
+  { 'i',              'l',      'Right' },
+  { 'U',              '{',      'Prev Block' },
+  { 'E',              '}',      'Next Block' },
+  { 'N',              'ge',     'Prev Word' },
+  { 'I',              'w',      'Next Word' },
 
-  { '<Home>',         '^' },
-  { '<End>',          '$' },
+  { '<Home>',         '^',      'Muggle Home' },
+  { '<End>',          '$',      'Muggle End' },
 
-  { 'h',              'g0' },
-  { 'o',              'g$' },
-  { 'H',              'gg0' },
-  { 'O',              'G$' },
+  { 'h',              'g0',     'Home (Vari Cell)' },
+  { 'o',              'g$',     'End (Vari Cell)' },
+  { 'H',              'gg0',    'Top Home' },
+  { 'O',              'G$',     'Bot End' },
 
-  { 'y',              '<C-O>' },
-  { 'Y',              '<C-I>' },
+  { 'y',              '<C-O>',  'Jump Backward' },
+  { 'Y',              '<C-I>',  'Jump Forward' },
 
-  { 'f',              '3<C-Y>' },
-  { 's',              '3<C-E>' },
-  { 'F',              '<C-U>' },
-  { 'S',              '<C-D>' },
+  { 'f',              '3<C-Y>', 'Scroll 3 Up' },
+  { 's',              '3<C-E>', 'Scroll 3 Down' },
+  { 'F',              '<C-U>',  'Scroll 1/2 Pg Up' },
+  { 'S',              '<C-D>',  'Scroll 1/2 Pg Down' },
 
-  { '<PageUp>',       '<C-B>' },
-  { '<PageDown>',     '<C-F>' },
+  { '<PageUp>',       '<C-B>',  'Muggle PageUp' },
+  { '<PageDown>',     '<C-F>',  'Muggle PageDown' },
 
-  { '<Space><Space>', 'zz' },
+  { '<Space><Space>', 'zz',     'Scroll for Pos Center' },
 
-  { 'v',              '"zp' },
-  { 'V',              '"+p' },
+  { 'v',              '"zp',    'Paste from Prime' },
+  { 'V',              '"+p',    'Paste from System' },
 
-  { 'x',              'x' },
+  { 'x',              'x',      'Delete a Char' },
 }
 
 for _, map in ipairs(nv_maps) do
-  vim.keymap.set({ 'n', 'v' }, map[1], map[2], o)
+  vim.keymap.set({ 'n', 'v' }, map[1], map[2], o(map[3]))
 end
 
 local v_maps = {
-  { 'C',     '"+y' },
-  { 'c',     '"zy' },
-  { 'd',     '"zd' },
-  { 'D',     '"+d' },
+  { 'c',     '"zy',                        'Copy to Prime' },
+  { 'C',     '"+y',                        'Copy to System' },
+  { 'd',     '"zd',                        'Cut to Prime' },
+  { 'D',     '"+d',                        'Cut to System' },
 
-  { '<BS>',  'd' },
-  { '<Del>', 'd' },
+  { '<BS>',  'd',                          'Delete Selection' },
+  { '<Del>', 'd',                          'Delete Selection' },
 
-  { "'",     [[y/\<\><Left><Left><C-R>"]] },
-  { '"',     [[y?\<\><Left><Left><C-R>"]] },
+  { "'",     [[y/\<\><Left><Left><C-R>"]], 'Srch Sel Forward' },
+  { '"',     [[y?\<\><Left><Left><C-R>"]], 'Srch Sel Backward' },
 
-  { 't',     'A' },
-  { 'r',     'I' },
+  { 't',     'A',                          'To Multi Insert' },
+  { 'r',     'I',                          'To Multi Insert' },
 }
 
 for _, map in ipairs(v_maps) do
-  vim.keymap.set('v', map[1], map[2], o)
+  vim.keymap.set('v', map[1], map[2], o(map[3]))
 end
 
 local n_maps = {
-  { '<Space>m',     '`' },
+  { '<Space>m',     '`',                             'Go to Mark [a-Z]' },
 
-  { 'C',            '"+yy' },
-  { 'c',            '"zyy' },
-  { 'd',            '"zdd' },
-  { 'D',            '"+dd' },
+  { 'c',            '"zyy',                          'Copy to Prime' },
+  { 'C',            '"+yy',                          'Copy to System' },
+  { 'd',            '"zdd',                          'Cut to Prime' },
+  { 'D',            '"+dd',                          'Cut to System' },
 
-  { '<BS>',         'dhi' },
-  { '<Del>',        'xi' },
+  { '<BS>',         'dhi',                           'Muggle BS' },
+  { '<Del>',        'xi',                            'Muggle Del' },
 
-  { 't',            'a' },
-  { 'r',            'i' },
-  { 'T',            'R' },
-  { '<Space><CR>',  'o' },
-  { 'R',            'O' },
-  { 'g',            'v' },
-  { 'G',            'V' },
+  { 't',            'a',                             'To Insert' },
+  { 'r',            'i',                             'To Insert' },
+  { 'T',            'R',                             'To Replace' },
+  { '<Space><CR>',  'o',                             'To Insert' },
+  { 'R',            'O',                             'To Insert' },
+  { 'g',            'v',                             'To Visual' },
+  { 'G',            'V',                             'To Visual Line' },
+  { '<Space>g',     '<C-V>',                         'To Visual Block' },
 
-  { ';',            'A;<ESC>' },
+  { ';',            'A;<ESC>',                       'Append Semi' },
 
-  { '<',            ':cprevious<CR>' },
-  { '>',            ':cnext<CR>' },
+  { '<',            ':cprevious<CR>',                'Qf Prev' },
+  { '>',            ':cnext<CR>',                    'Qf Next' },
 
-  { "'",            '/' },
-  { '"',            '?' },
-  { '\\',           [[/\<\><Left><Left>]] },
-  { '|',            [[/\<\><Left><Left><C-R><C-W>]] },
-  { ')',            'n' },
-  { '(',            'N' },
+  { "'",            '/',                             'Srch ...' },
+  { '"',            [[/\<\><Left><Left>]],           'Srch <...>' },
+  { '\\',           '/<C-R><C-W>',                   'Srch it...' },
+  { '|',            [[/\<\><Left><Left><C-R><C-W>]], 'Srch <it...>' },
+  { ')',            'n',                             'Srch Next' },
+  { '(',            'N',                             'Srch Prev' },
 
-  { 'z',            'u' },
-  { 'Z',            '<C-R>' },
+  { 'z',            'u',                             'Undo' },
+  { 'Z',            '<C-R>',                         'Redo' },
 
-  { 'q',            'qy' },
-  { 'Q',            'q' },
-  { 'p',            '@y' },
+  { 'q',            'qy',                            'Start Record' },
+  { 'Q',            'q',                             'Stop Record' },
+  { 'p',            '@y',                            'Play Record' },
 
-  { '<Space>s',     ':write<CR>' },
-  { '<Space>q',     '<Nop>' },
-  { '<Space>q<CR>', ':quit<CR>' },
-  { '<Space>qa',    ':qa<CR>' },
-  { '<Space>qw',    ':wq<CR>' },
-  { '<Space>qq',    ':quit!<CR>' },
-  { '<Space>r',     '<Nop>' },
-  { '<Space>rr',    ':edit!<CR>' },
+  { '<Space>s',     ':write<CR>',                    'Save' },
+  { '<Space>q',     '<Nop>',                         'Leading NOP' },
+  { '<Space>q<CR>', ':quit<CR>',                     'Quit' },
+  { '<Space>qa',    ':qa<CR>',                       'Quit All' },
+  { '<Space>qw',    ':wq<CR>',                       'Save & Quit' },
+  { '<Space>qq',    ':quit!<CR>',                    'Quit!' },
+  { '<Space>r',     '<Nop>',                         'Leading NOP' },
+  { '<Space>rr',    ':edit!<CR>',                    'Revert' },
 
-  { 'w',            ':close<CR>' },
-  { 'W',            ':only<CR>' },
-  { 'j',            ':wincmd s<CR>' },
-  { 'J',            ':wincmd v<CR>' },
-  { '<Space>j',     ':wincmd w<CR>' },
-  { '<Space>J',     ':wincmd W<CR>' },
-  { '=',            ':wincmd 3+<CR>' },
-  { '-',            ':wincmd 3-<CR>' },
-  { '+',            ':wincmd 10><CR>' },
-  { '_',            ':wincmd 10<LT><CR>' },
+  { 'w',            ':close<CR>',                    'Close' },
+  { 'W',            ':only<CR>',                     'Close Others' },
+  { '<Space>j',     ':wincmd s<CR>',                 '- Split' },
+  { '<Space>J',     ':wincmd v<CR>',                 '| Split' },
+  { 'j',            ':wincmd w<CR>',                 'Next Window' },
+  { 'J',            ':wincmd W<CR>',                 'Prev Window' },
+  { '=',            ':wincmd 3+<CR>',                'Win Height +' },
+  { '-',            ':wincmd 3-<CR>',                'Win Height -' },
+  { '+',            ':wincmd 10><CR>',               'Win Width +' },
+  { '_',            ':wincmd 10<LT><CR>',            'Win Width -' },
 
-  { '<Space>T',     '<C-W>T' }, -- curr split -> new tab
+  { '<Space>T',     '<C-W>T',                        'To New Tab' },
 
-  { '<Space>t',     '<Nop>' },
-  { '<Space>tt',    ':tabnew .<CR>' },
-  { '<Space>tw',    ':tabonly<CR>' },
-  { '<Space>ti',    ':tabnext<CR>' },
-  { '<Space>tn',    ':tabprevious<CR>' },
-  { '<Space>th',    ':tabfirst<CR>' },
-  { '<Space>to',    ':tablast<CR>' },
+  { '<Space>t',     '<Nop>',                         'Leading NOP' },
+  { '<Space>tt',    ':tabnew .<CR>',                 'New Tab' },
+  { '<Space>tw',    ':tabonly<CR>',                  'Close Other Tabs' },
+  { '<Space>ti',    ':tabnext<CR>',                  'Next Tab' },
+  { '<Space>tn',    ':tabprevious<CR>',              'Prev Tab' },
+  { '<Space>th',    ':tabfirst<CR>',                 'First Tab' },
+  { '<Space>to',    ':tablast<CR>',                  'Last Tab' },
 
-  { '<Space>w',     ':bdelete<CR>' },
-  { '<Space>i',     ':bnext<CR>' },
-  { '<Space>n',     ':bprevious<CR>' },
-  { '<Space>h',     ':bfirst<CR>' },
-  { '<Space>o',     ':blast<CR>' },
-  { '1',            ':bfirst<CR>' },
-  { '2',            ':bfirst | 1bnext<CR>' },
-  { '3',            ':bfirst | 2bnext<CR>' },
-  { '4',            ':bfirst | 3bnext<CR>' },
-  { '5',            ':bfirst | 4bnext<CR>' },
-  { '6',            ':bfirst | 5bnext<CR>' },
-  { '7',            ':bfirst | 6bnext<CR>' },
-  { '8',            ':bfirst | 7bnext<CR>' },
-  { '9',            ':bfirst | 8bnext<CR>' },
-  { '0',            ':bfirst | 9bnext<CR>' },
+  { '<Space>w',     ':bdelete<CR>',                  'Delete Buffer' },
+  { '<Space>i',     ':bnext<CR>',                    'Next Buffer' },
+  { '<Space>n',     ':bprevious<CR>',                'Prev Buffer' },
+  { '<Space>h',     ':bfirst<CR>',                   'First Buffer' },
+  { '<Space>o',     ':blast<CR>',                    'Last Buffer' },
+  { '1',            ':bfirst<CR>',                   '1st Buffer' },
+  { '2',            ':bfirst | 1bnext<CR>',          '2nd Buffer' },
+  { '3',            ':bfirst | 2bnext<CR>',          '3rd Buffer' },
+  { '4',            ':bfirst | 3bnext<CR>',          '4th Buffer' },
+  { '5',            ':bfirst | 4bnext<CR>',          '5th Buffer' },
+  { '6',            ':bfirst | 5bnext<CR>',          '6th Buffer' },
+  { '7',            ':bfirst | 6bnext<CR>',          '7th Buffer' },
+  { '8',            ':bfirst | 7bnext<CR>',          '8th Buffer' },
+  { '9',            ':bfirst | 8bnext<CR>',          '9th Buffer' },
+  { '0',            ':bfirst | 9bnext<CR>',          '10th Buffer' },
 }
 
 for _, map in ipairs(n_maps) do
-  vim.keymap.set('n', map[1], map[2], o)
+  vim.keymap.set('n', map[1], map[2], o(map[3]))
 end
 
 vim.notify('Not sure about hoomod? Type :q! to exit.', vim.log.levels.INFO)
@@ -215,7 +215,7 @@ vim.notify('Not sure about hoomod? Type :q! to exit.', vim.log.levels.INFO)
 vim.keymap.set('n', '<Space>W', function()
   local cur = vim.api.nvim_get_current_buf()
   local del = false
-  local errors = { 'Error(s) During `:bdelete`' }
+  local errors = { 'Error(s) During :bdelete' }
 
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
     if buf ~= cur and vim.api.nvim_buf_is_loaded(buf) then
@@ -236,15 +236,17 @@ vim.keymap.set('n', '<Space>W', function()
   if #errors > 1 then
     error(table.concat(errors, '\n  '))
   end
-end, o)
+end, o 'Delete Other Buffers')
 
-vim.keymap.set('n', 'a', vim.lsp.buf.references, o)
-vim.keymap.set('n', 'b', vim.lsp.buf.definition, o)
-vim.keymap.set('n', 'k', vim.lsp.buf.rename, o)
-vim.keymap.set('n', '<Space>f', vim.lsp.buf.format, o)
-vim.keymap.set('n', ',,', vim.lsp.buf.hover, o)
-vim.keymap.set('n', ',d', vim.diagnostic.open_float, o)
+vim.keymap.set('n', 'a', vim.lsp.buf.references, o 'vim.lsp.buf.references')
+vim.keymap.set('n', 'b', vim.lsp.buf.definition, o 'vim.lsp.buf.definition')
+vim.keymap.set('n', 'k', vim.lsp.buf.rename, o 'vim.lsp.buf.rename')
+vim.keymap.set('n', '<Space>f', vim.lsp.buf.format, o 'vim.lsp.buf.format')
+vim.keymap.set('n', ',,', vim.lsp.buf.hover, o 'vim.lsp.buf.hover')
+vim.keymap.set('n', ',d', vim.diagnostic.open_float,
+  o 'vim.diagnostic.open_float')
 
+-- TODO: 스펠 체크 구성 좀 짜치는데... 나중에 키매핑으로 토글하자
 vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'checkhealth', 'qf' },
   callback = function()
@@ -260,20 +262,21 @@ vim.api.nvim_create_autocmd('TermOpen', {
   end,
 })
 
-vim.keymap.set('n', '<Space>p', '<Nop>', o)
+vim.keymap.set('n', '<Space>p', '<Nop>', o 'Leading NOP')
 
 -- 현재 창에서 터미널 열기
-vim.keymap.set('n', '<Space>p<CR>', ':terminal<CR>i', o)
+vim.keymap.set('n', '<Space>p<CR>', ':terminal<CR>i', o 'Open Terminal Here')
 
 -- 새 탭에서 터미널 열기
-vim.keymap.set('n', '<Space>pn', ':tabnew | terminal<CR>i', o)
+vim.keymap.set('n', '<Space>pn', ':tabnew | terminal<CR>i',
+  o 'Open Terminal in New Tab')
 
 -- 하단에 새 터미널 창 열기
 vim.keymap.set('n', '<Space>pp', function()
   vim.cmd 'botright terminal'
   vim.api.nvim_win_set_height(0, 7)
   vim.api.nvim_command 'startinsert'
-end, o)
+end, o 'Open Terminal at Bottom')
 
 -- Lazygit
 vim.keymap.set('n', '<Space>pl', function()
@@ -281,10 +284,11 @@ vim.keymap.set('n', '<Space>pl', function()
   vim.cmd 'terminal'
   vim.api.nvim_command 'startinsert'
   vim.api.nvim_input 'nix-shell -p lazygit --run lazygit'
-end, o)
+end, o 'Open Terminal and Input Lazygit Command')
 
 -- 터미널 모드에서 나오기
-vim.keymap.set('t', '<C-\\><C-\\>', '<C-\\><C-N>', o)
+vim.keymap.set('t', '<C-\\><C-\\>', '<C-\\><C-N>',
+  o 'Exit from Terminal Mode')
 
 -- 파일 브라우징
 vim.keymap.set('n', '<Space>.', function()
@@ -293,6 +297,6 @@ vim.keymap.set('n', '<Space>.', function()
   else
     vim.cmd.edit '%:h'
   end
-end, o)
+end, o 'Browse Files')
 
 require 'config.lazy'

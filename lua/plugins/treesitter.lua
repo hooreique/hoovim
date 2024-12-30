@@ -1,6 +1,12 @@
 ---@param desc string
 ---@return vim.keymap.set.Opts
-local function o(desc) return { noremap = true, nowait = true, desc = desc } end
+local function o(desc)
+  return {
+    noremap = true,
+    nowait = true,
+    desc = 'hoo: treesitter: ' .. desc,
+  }
+end
 
 ---주어진 임의의 기준 노드부터 상위로 가면서
 ---범위가 동일한 노드 중 가장 상위 노드를 찾아 반환합니다.
@@ -102,17 +108,25 @@ return {
         },
       }
 
-      vim.keymap.set({ 'n', 'v' }, '[', compose(inner, goto_start),
-        o 'hoo: Go to start of current node')
+      vim.keymap.set(
+        { 'n', 'v' }, '[',
+        compose(inner, goto_start),
+        o 'Go to Start of Current Node')
 
-      vim.keymap.set({ 'n', 'v' }, ']', compose(inner, goto_end),
-        o 'hoo: Go to end of current node')
+      vim.keymap.set(
+        { 'n', 'v' }, ']',
+        compose(inner, goto_end),
+        o 'Go to End of Current Node')
 
-      vim.keymap.set({ 'n', 'v' }, '{', compose(outer, goto_start),
-        o 'hoo: Go to start of current node')
+      vim.keymap.set(
+        { 'n', 'v' }, '{',
+        compose(outer, goto_start),
+        o 'Go to Start of Current Node')
 
-      vim.keymap.set({ 'n', 'v' }, '}', compose(outer, goto_end),
-        o 'hoo: Go to end of current node')
+      vim.keymap.set(
+        { 'n', 'v' }, '}',
+        compose(outer, goto_end),
+        o 'Go to End of Current Node')
     end,
   },
 }
