@@ -238,7 +238,8 @@ vim.keymap.set('n', '<Space>W', function()
   end
 end, o 'Delete Other Buffers')
 
-vim.keymap.set('n', 'a', vim.lsp.buf.references, o 'vim.lsp.buf.references')
+vim.keymap.set('n', '<Space>a', vim.lsp.buf.references,
+  o 'vim.lsp.buf.references')
 vim.keymap.set('n', 'b', vim.lsp.buf.definition, o 'vim.lsp.buf.definition')
 vim.keymap.set('n', 'k', vim.lsp.buf.rename, o 'vim.lsp.buf.rename')
 vim.keymap.set('n', '<Space>f', vim.lsp.buf.format, o 'vim.lsp.buf.format')
