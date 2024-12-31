@@ -32,8 +32,6 @@ return {
         }
       }
 
-      require('mini.cursorword').setup {}
-
       require('mini.indentscope').setup {
         mappings = {
           -- Textobjects
