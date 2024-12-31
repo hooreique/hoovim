@@ -1,4 +1,5 @@
 -- TODO: lua/config/treesitter 로 이사가기
+-- TODO: 커서가 다른 라인으로 이동하기 전에 Jump History 남기기
 
 ---@param desc string
 ---@return vim.keymap.set.Opts
