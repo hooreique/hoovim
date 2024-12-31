@@ -1,3 +1,5 @@
+-- TODO: lua/config/treesitter 로 이사가기
+
 ---@param desc string
 ---@return vim.keymap.set.Opts
 local function o(desc)
