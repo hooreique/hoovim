@@ -4,8 +4,6 @@ return {
     config = function()
       require('mini.icons').setup {}
 
-      require('mini.git').setup {}
-
       require('mini.diff').setup {
         mappings = {
           apply = '',
