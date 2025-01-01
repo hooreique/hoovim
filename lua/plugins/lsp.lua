@@ -5,7 +5,8 @@ return {
       'saghen/blink.cmp',
       {
         'williamboman/mason-lspconfig.nvim',
-        dependencies = 'williamboman/mason.nvim',
+        dependencies = { 'williamboman/mason.nvim', opts = {} },
+        opts = {},
       },
       {
         'folke/lazydev.nvim',
@@ -18,13 +19,15 @@ return {
           },
         },
       },
+      {
+        'nvim-java/nvim-java',
+        ft = 'java',
+        opts = {},
+      },
     },
     config = function()
       local lsp = require 'lspconfig'
       local cap = require('blink.cmp').get_lsp_capabilities()
-
-      require('mason').setup {}
-      require('mason-lspconfig').setup {}
 
       lsp.jdtls.setup { capabilities = cap }
       lsp.denols.setup { capabilities = cap }
