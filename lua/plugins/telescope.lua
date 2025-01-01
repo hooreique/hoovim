@@ -50,6 +50,9 @@ return {
       local m = require 'config.telescope.multigrep-picker'
 
       vim.keymap.set('n', "<Space>'l", m.live_multigrep, o 'Live Multi Grep')
+
+      -- For external plugins that use telescope
+      vim.keymap.set('n', '<Space>"', '<Nop>', o 'Leading NOP')
     end,
   },
 }
