@@ -5,6 +5,6 @@ return {
   },
   opts = {
     max_lines = 3,
-    min_window_height = 7,
+    min_window_height = 10,
   },
 }
