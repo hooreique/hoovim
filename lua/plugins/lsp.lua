@@ -32,6 +32,7 @@ return {
       lsp.jdtls.setup { capabilities = cap }
       lsp.denols.setup { capabilities = cap }
       lsp.lua_ls.setup { capabilities = cap }
+      lsp.jsonls.setup { capabilities = cap }
       lsp.nil_ls.setup { capabilities = cap }
     end,
   },
