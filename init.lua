@@ -10,7 +10,6 @@ vim.opt.smartcase = true
 vim.opt.undofile = true
 vim.opt.scrolloff = 3
 vim.opt.updatetime = 250
-vim.opt.spell = true
 vim.opt.spelllang = { 'en_us', 'cjk' }
 
 -- Disable default mappings by _matchit_ built-in package
@@ -212,6 +211,14 @@ end
 
 vim.notify('Not sure about hoomod? Type :q! to exit.', vim.log.levels.INFO)
 
+vim.keymap.set('n', ',s', function()
+  if vim.api.nvim_get_option_value('spell', { scope = 'local' }) then
+    vim.cmd 'setlocal nospell | echo ":setlocal nospell"'
+  else
+    vim.cmd 'setlocal spell | echo ":setlocal spell"'
+  end
+end, o '')
+
 -- 현재 버퍼 빼고 전부 지우기
 vim.keymap.set('n', '<Space>W', function()
   local cur = vim.api.nvim_get_current_buf()
@@ -248,19 +255,10 @@ vim.keymap.set('n', ',,', vim.lsp.buf.hover, o 'vim.lsp.buf.hover')
 vim.keymap.set('n', ',d', vim.diagnostic.open_float,
   o 'vim.diagnostic.open_float')
 
--- TODO: 스펠 체크 구성 좀 짜치는데... 나중에 키매핑으로 토글하자
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'checkhealth', 'qf' },
-  callback = function()
-    vim.api.nvim_set_option_value('spell', false, { scope = 'local' })
-  end,
-})
-
 -- 터미널 창 구성
 vim.api.nvim_create_autocmd('TermOpen', {
   callback = function()
     vim.api.nvim_set_option_value('number', false, { scope = 'local' })
-    vim.api.nvim_set_option_value('spell', false, { scope = 'local' })
   end,
 })
 
