@@ -43,6 +43,12 @@ function M.goto_start(node)
 
   local maxr = vim.api.nvim_buf_line_count(0) - 1
 
+  -- TODO: 비주얼 모드에서도 이동 전에 마크하고 싶음
+  local state = vim.api.nvim_get_mode()
+  if not state.blocking and state.mode == 'n' then
+    vim.cmd "normal! m'"
+  end
+
   vim.api.nvim_win_set_cursor(0, { math.min(maxr, sr) + 1, sc })
 end
 
@@ -55,6 +61,11 @@ function M.goto_end(node)
   if er > maxr then
     er = maxr
     ec = vim.api.nvim_buf_get_lines(0, er, er + 1, false)[1]:len()
+  end
+
+  local state = vim.api.nvim_get_mode()
+  if not state.blocking and state.mode == 'n' then
+    vim.cmd "normal! m'"
   end
 
   vim.api.nvim_win_set_cursor(0, { er + 1, math.max(0, ec - 1) })
