@@ -4,22 +4,22 @@ return {
   event = 'InsertEnter',
   opts = {
     panel = {
-      enable = false,
+      -- enable = false,
       keymap = {
-        jump_prev = '<C-\\>c',
-        jump_next = '<C-\\>c',
-        accept = '<C-\\>c',
-        refresh = '<C-\\>c',
-        open = '<C-\\>c',
+        jump_prev = '<C-P>',
+        jump_next = '<C-N>',
+        accept = '<C-Y>',
+        refresh = '<C-R>',
+        open = '<C-CR>',
       },
     },
     suggestion = {
       auto_trigger = true,
       keymap = {
         accept = '<Tab>',
-        next = '<C-\\>c',
-        prev = '<C-\\>c',
-        dismiss = '<C-\\>c',
+        next = '<C-E>',
+        prev = '<C-U>',
+        dismiss = '<C-BS>',
       },
     },
   },
