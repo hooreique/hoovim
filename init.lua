@@ -217,7 +217,7 @@ vim.keymap.set('n', ',s', function()
   else
     vim.cmd 'setlocal spell | echo ":setlocal spell"'
   end
-end, o '')
+end, o 'Toggle Spell Check')
 
 -- 현재 버퍼 빼고 전부 지우기
 vim.keymap.set('n', '<Space>W', function()
