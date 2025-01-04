@@ -278,14 +278,6 @@ vim.keymap.set('n', '<Space>pp', function()
   vim.api.nvim_command 'startinsert'
 end, o 'Open Terminal at Bottom')
 
--- Lazygit
-vim.keymap.set('n', '<Space>pl', function()
-  vim.cmd 'tabnew'
-  vim.cmd 'terminal'
-  vim.api.nvim_command 'startinsert'
-  vim.api.nvim_input 'nix-shell -p lazygit --run lazygit'
-end, o 'Open Terminal and Input Lazygit Command')
-
 -- 터미널 모드에서 나오기
 vim.keymap.set('t', '<C-\\><C-\\>', '<C-\\><C-N>',
   o 'Exit from Terminal Mode')
