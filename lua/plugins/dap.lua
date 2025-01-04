@@ -1,3 +1,13 @@
+---@param desc string
+---@return vim.keymap.set.Opts
+local function o(desc)
+  return {
+    noremap = true,
+    nowait = true,
+    desc = 'hoo: dap: ' .. desc,
+  }
+end
+
 return {
   'rcarriga/nvim-dap-ui',
   dependencies = {
@@ -46,5 +56,39 @@ return {
         args = { '${port}', '127.0.0.1' },
       },
     }
+
+    vim.keymap.set('n', '<Space>d', '<Nop>', o 'Leading NOP')
+    vim.keymap.set('n', '<Space>d<Space>', function()
+      dap.toggle_breakpoint()
+    end, o 'Toggle Breakpoint')
+    vim.keymap.set('n', '<Space>dl', function()
+      dap.list_breakpoints(true)
+    end, o 'List Breakpoints')
+    vim.keymap.set('n', '<Space>dc', function()
+      dap.clear_breakpoints()
+    end, o 'Clear Breakpoints')
+
+    vim.keymap.set('n', '<Space>dd', function()
+      dap.continue()
+    end, o 'Continue ▶︎')
+    vim.keymap.set('n', '<Space>de', function()
+      dap.step_over()
+    end, o 'Step Over ↓')
+    vim.keymap.set('n', '<Space>du', function()
+      dap.step_back()
+    end, o 'Step Back ↑')
+    vim.keymap.set('n', '<Space>di', function()
+      dap.step_into()
+    end, o 'Step Into →')
+    vim.keymap.set('n', '<Space>dn', function()
+      dap.step_out()
+    end, o 'Step Out ←')
+
+    vim.keymap.set('n', '<Space>dt', function()
+      dap.terminate()
+    end, o 'Terminate')
+    vim.keymap.set('n', '<Space>dr', function()
+      dap.restart()
+    end, o 'Restart')
   end,
 }
