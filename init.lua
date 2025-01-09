@@ -141,6 +141,8 @@ local n_maps = {
 
   { ';',            'A;<ESC>',                       'Append Semi' },
 
+  { ',e',           ':setlocal fileformat=unix<CR>', 'CRLF to LF' },
+
   { '<',            ':cprevious<CR>',                'Qf Prev' },
   { '>',            ':cnext<CR>',                    'Qf Next' },
 
