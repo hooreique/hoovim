@@ -37,15 +37,19 @@ return {
       },
       {
         'nvim-java/nvim-java',
-        ft = 'java',
-        opts = {},
+        config = function()
+          if vim.fn.executable 'javac' == 1 and vim.fn.executable 'jdtls' == 1 then
+            require('java').setup {}
+          end
+        end,
       },
     },
     config = function()
       local lsp = require 'lspconfig'
       local cap = require('blink.cmp').get_lsp_capabilities()
 
-      if vim.fn.executable 'jdtls' == 1 then
+      -- nixpkgs#jdt-language-server
+      if vim.fn.executable 'javac' == 1 and vim.fn.executable 'jdtls' == 1 then
         lsp.jdtls.setup { capabilities = cap }
       end
 
@@ -61,6 +65,7 @@ return {
         lsp.lua_ls.setup { capabilities = cap }
       end
 
+      -- nixpkgs#vscode-langservers-extracted
       if vim.fn.executable 'vscode-json-language-server' == 1 then
         lsp.jsonls.setup { capabilities = cap }
       end
