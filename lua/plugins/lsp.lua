@@ -57,8 +57,8 @@ return {
         lsp.denols.setup { capabilities = cap }
       end
 
-      if vim.fn.executable 'nixd' == 1 then
-        lsp.nixd.setup { capabilities = cap }
+      if vim.fn.executable 'nil' == 1 then
+        lsp.nil_ls.setup { capabilities = cap }
       end
 
       if vim.fn.executable 'lua-language-server' == 1 then

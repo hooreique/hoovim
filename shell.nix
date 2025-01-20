@@ -1,1 +1,1 @@
-{ pkgs ? import <nixpkgs> {} }: pkgs.mkShell { packages = [ pkgs.lua-language-server pkgs.nixd ]; }
+{ pkgs ? import <nixpkgs> {} }: pkgs.mkShell { packages = [ pkgs.lua-language-server pkgs.nil ]; }
