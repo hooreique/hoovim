@@ -47,6 +47,7 @@ return {
       ui.close()
     end
 
+    -- TODO: if문으로 감싸기 nixpkgs#vscode-js-debug
     dap.adapters['pwa-node'] = {
       type = 'server',
       host = '127.0.0.1',
