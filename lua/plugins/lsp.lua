@@ -45,11 +45,25 @@ return {
       local lsp = require 'lspconfig'
       local cap = require('blink.cmp').get_lsp_capabilities()
 
-      lsp.jdtls.setup { capabilities = cap }
-      lsp.denols.setup { capabilities = cap }
-      lsp.lua_ls.setup { capabilities = cap }
-      lsp.jsonls.setup { capabilities = cap }
-      lsp.nil_ls.setup { capabilities = cap }
+      if vim.fn.executable 'jdtls' == 1 then
+        lsp.jdtls.setup { capabilities = cap }
+      end
+
+      if vim.fn.executable 'deno' == 1 then
+        lsp.denols.setup { capabilities = cap }
+      end
+
+      if vim.fn.executable 'nixd' == 1 then
+        lsp.nixd.setup { capabilities = cap }
+      end
+
+      if vim.fn.executable 'lua-language-server' == 1 then
+        lsp.lua_ls.setup { capabilities = cap }
+      end
+
+      if vim.fn.executable 'vscode-json-language-server' == 1 then
+        lsp.jsonls.setup { capabilities = cap }
+      end
     end,
   },
 }
