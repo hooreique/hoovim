@@ -47,16 +47,18 @@ return {
       ui.close()
     end
 
-    -- TODO: if문으로 감싸기 nixpkgs#vscode-js-debug
-    dap.adapters['pwa-node'] = {
-      type = 'server',
-      host = '127.0.0.1',
-      port = '${port}',
-      executable = {
-        command = 'js-debug',
-        args = { '${port}', '127.0.0.1' },
-      },
-    }
+    -- nixpkgs#vscode-js-debug
+    if vim.fn.executable 'js-debug' == 1 then
+      dap.adapters['pwa-node'] = {
+        type = 'server',
+        host = '127.0.0.1',
+        port = '${port}',
+        executable = {
+          command = 'js-debug',
+          args = { '${port}', '127.0.0.1' },
+        },
+      }
+    end
 
     vim.keymap.set('n', '<Space>d', '<Nop>', o 'Leading NOP')
     vim.keymap.set('n', '<Space>d<Space>', function()
