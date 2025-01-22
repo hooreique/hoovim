@@ -257,19 +257,6 @@ vim.keymap.set('n', ',,', vim.lsp.buf.hover, o 'vim.lsp.buf.hover')
 vim.keymap.set('n', ',d', vim.diagnostic.open_float,
   o 'vim.diagnostic.open_float')
 
--- Clipboard
-vim.g.clipboard = {
-  name = 'OSC 52',
-  copy = {
-    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-  },
-  paste = {
-    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
-  },
-}
-
 -- 터미널 창 구성
 vim.api.nvim_create_autocmd('TermOpen', {
   callback = function()
