@@ -69,6 +69,11 @@ return {
       if vim.fn.executable 'vscode-json-language-server' == 1 then
         lsp.jsonls.setup { capabilities = cap }
       end
+
+      -- nixpkgs#dockerfile-language-server-nodejs
+      if vim.fn.executable 'docker-langserver' == 1 then
+        lsp.dockerls.setup { capabilities = cap }
+      end
     end,
   },
 }
