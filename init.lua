@@ -213,6 +213,12 @@ end
 
 vim.notify('Not sure about hoomod? Type :q! to exit.', vim.log.levels.INFO)
 
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    vim.highlight.on_yank({ higroup = 'Visual', timeout = 100 })
+  end
+})
+
 vim.keymap.set('n', ',s', function()
   if vim.api.nvim_get_option_value('spell', { scope = 'local' }) then
     vim.cmd 'setlocal nospell | echo ":setlocal nospell"'
