@@ -8,5 +8,9 @@ return {
   opts = {
     appearance = { nerd_font_variant = 'normal' },
     signature = { enabled = true },
+    cmdline = {
+      completion = { menu = { auto_show = true } },
+      keymap = { ['<Tab>'] = { 'show', 'accept' } },
+    },
   },
 }
