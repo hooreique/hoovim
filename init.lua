@@ -23,6 +23,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.undofile = true
 vim.opt.scrolloff = 3
+vim.opt.mousescroll = 'ver:1,hor:1'
 vim.opt.updatetime = 250
 vim.opt.spelllang = { 'en_us', 'cjk' }
 
