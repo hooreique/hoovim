@@ -5,6 +5,7 @@ if os.getenv 'SSH_TTY' and (os.getenv 'TERM' or ''):match '^xterm' then
       ['+'] = require('vim.ui.clipboard.osc52').copy '+',
       ['*'] = require('vim.ui.clipboard.osc52').copy '*',
     },
+    -- Windows Terminal 의 경우 여전히 붙여넣기가 안 되지만 복사가 되는 것에 감지덕지하자
     paste = {
       ['+'] = require('vim.ui.clipboard.osc52').paste '+',
       ['*'] = require('vim.ui.clipboard.osc52').paste '*',
