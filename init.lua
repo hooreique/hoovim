@@ -6,11 +6,11 @@ if os.getenv 'SSH_TTY' and (os.getenv 'TERM' or ''):match '^xterm' then
       ['*'] = require('vim.ui.clipboard.osc52').copy '*',
     },
     -- 붙여넣기가 안 되는데 어디를 건드려야 할지 모르겠음
-    -- 근데 복사는 돼서 일단 큰 문제는 아님
-    paste = {
-      ['+'] = require('vim.ui.clipboard.osc52').paste '+',
-      ['*'] = require('vim.ui.clipboard.osc52').paste '*',
-    },
+    -- 그래서 일단 꺼 둠
+    -- paste = {
+    --   ['+'] = require('vim.ui.clipboard.osc52').paste '+',
+    --   ['*'] = require('vim.ui.clipboard.osc52').paste '*',
+    -- },
   }
 end
 
