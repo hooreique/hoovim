@@ -1,18 +1,16 @@
-if os.getenv 'SSH_TTY' and (os.getenv 'TERM' or ''):match '^xterm' then
-  vim.g.clipboard = {
-    name = 'OSC 52',
-    copy = {
-      ['+'] = require('vim.ui.clipboard.osc52').copy '+',
-      ['*'] = require('vim.ui.clipboard.osc52').copy '*',
-    },
-    -- 붙여넣기가 안 되는데 어디를 건드려야 할지 모르겠음
-    -- 그래서 일단 꺼 둠
-    -- paste = {
-    --   ['+'] = require('vim.ui.clipboard.osc52').paste '+',
-    --   ['*'] = require('vim.ui.clipboard.osc52').paste '*',
-    -- },
-  }
-end
+-- if os.getenv 'SSH_TTY' and (os.getenv 'TERM' or ''):match '^xterm' then
+--   vim.g.clipboard = {
+--     name = 'OSC 52',
+--     copy = {
+--       ['+'] = require('vim.ui.clipboard.osc52').copy '+',
+--       ['*'] = require('vim.ui.clipboard.osc52').copy '*',
+--     },
+--     paste = {
+--       ['+'] = require('vim.ui.clipboard.osc52').paste '+',
+--       ['*'] = require('vim.ui.clipboard.osc52').paste '*',
+--     },
+--   }
+-- end
 
 if os.getenv 'TERM' == 'xterm-ghostty' then
   vim.opt.mousescroll = 'ver:1,hor:1'
