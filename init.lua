@@ -231,10 +231,23 @@ end
 
 vim.notify('Not sure about hoomod? Type :q! to exit.', vim.log.levels.INFO)
 
-vim.api.nvim_create_autocmd("TextYankPost", {
+vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank({ higroup = 'Visual', timeout = 100 })
-  end
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  callback = function()
+    local tw = vim.api.nvim_get_option_value('textwidth', { scope = 'local' })
+
+    if tw > 0 then
+      vim.api.nvim_set_option_value(
+        'colorcolumn', tostring(tw + 1), { scope = 'local' })
+    else
+      vim.api.nvim_set_option_value('colorcolumn', '81', { scope = 'local' })
+    end
+  end,
 })
 
 vim.keymap.set('n', ',s', function()
