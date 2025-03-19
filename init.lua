@@ -72,45 +72,45 @@ for _, key in ipairs(keys) do
 end
 
 local nv_maps = {
-  { '<Up>',           'k',      'Muggle Up' },
-  { '<Down>',         'j',      'Muggle Down' },
-  { '<Left>',         'h',      'Muggle Left' },
-  { '<Right>',        'l',      'Muggle Right' },
+  { '<Up>',           'k',       'Muggle Up' },
+  { '<Down>',         'j',       'Muggle Down' },
+  { '<Left>',         'h',       'Muggle Left' },
+  { '<Right>',        'l',       'Muggle Right' },
 
-  { 'u',              'gk',     'Up (Vari Cell)' },
-  { 'e',              'gj',     'Down (Vari Cell)' },
-  { 'n',              'h',      'Left' },
-  { 'i',              'l',      'Right' },
-  { 'U',              '{',      'Prev Block' },
-  { 'E',              '}',      'Next Block' },
-  { 'N',              'ge',     'Prev Word' },
-  { 'I',              'w',      'Next Word' },
+  { 'u',              'gk',      'Up (Vari Cell)' },
+  { 'e',              'gj',      'Down (Vari Cell)' },
+  { 'n',              'h',       'Left' },
+  { 'i',              'l',       'Right' },
+  { 'U',              '{',       'Prev Block' },
+  { 'E',              '}',       'Next Block' },
+  { 'N',              'ge',      'Prev Word' },
+  { 'I',              'w',       'Next Word' },
 
-  { '<Home>',         '^',      'Muggle Home' },
-  { '<End>',          '$',      'Muggle End' },
+  { '<Home>',         '^',       'Muggle Home' },
+  { '<End>',          '$',       'Muggle End' },
 
-  { 'h',              'g0',     'Home (Vari Cell)' },
-  { 'o',              'g$',     'End (Vari Cell)' },
-  { 'H',              'gg0',    'Top Home' },
-  { 'O',              'G$',     'Bot End' },
+  { 'h',              'g0',      'Home (Vari Cell)' },
+  { 'o',              'g$',      'End (Vari Cell)' },
+  { 'H',              'gg0',     'Top Home' },
+  { 'O',              'G$',      'Bot End' },
 
-  { 'y',              '<C-O>',  'Jump Backward' },
-  { 'Y',              '<C-I>',  'Jump Forward' },
+  { 'y',              '<C-O>',   'Jump Backward' },
+  { 'Y',              '<C-I>',   'Jump Forward' },
 
-  { 'f',              '3<C-Y>', 'Scroll 3 Up' },
-  { 's',              '3<C-E>', 'Scroll 3 Down' },
-  { 'F',              '<C-U>',  'Scroll 1/2 Pg Up' },
-  { 'S',              '<C-D>',  'Scroll 1/2 Pg Down' },
+  { 'f',              '3<C-Y>M', 'Scroll 3 Up' },
+  { 's',              '3<C-E>M', 'Scroll 3 Down' },
+  { 'F',              '<C-U>',   'Scroll 1/2 Pg Up' },
+  { 'S',              '<C-D>',   'Scroll 1/2 Pg Down' },
 
-  { '<PageUp>',       '<C-B>',  'Muggle PageUp' },
-  { '<PageDown>',     '<C-F>',  'Muggle PageDown' },
+  { '<PageUp>',       '<C-B>',   'Muggle PageUp' },
+  { '<PageDown>',     '<C-F>',   'Muggle PageDown' },
 
-  { '<Space><Space>', 'zz',     'Scroll for Pos Center' },
+  { '<Space><Space>', 'zz',      'Scroll for Pos Center' },
 
-  { 'v',              '"zp',    'Paste from Prime' },
-  { 'V',              '"+p',    'Paste from System' },
+  { 'v',              '"zp',     'Paste from Prime' },
+  { 'V',              '"+p',     'Paste from System' },
 
-  { 'x',              'x',      'Delete a Char' },
+  { 'x',              'x',       'Delete a Char' },
 }
 
 for _, map in ipairs(nv_maps) do
