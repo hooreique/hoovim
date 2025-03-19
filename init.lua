@@ -1,21 +1,3 @@
--- if os.getenv 'SSH_TTY' and (os.getenv 'TERM' or ''):match '^xterm' then
---   vim.g.clipboard = {
---     name = 'OSC 52',
---     copy = {
---       ['+'] = require('vim.ui.clipboard.osc52').copy '+',
---       ['*'] = require('vim.ui.clipboard.osc52').copy '*',
---     },
---     paste = {
---       ['+'] = require('vim.ui.clipboard.osc52').paste '+',
---       ['*'] = require('vim.ui.clipboard.osc52').paste '*',
---     },
---   }
--- end
-
-if os.getenv 'TERM' == 'xterm-ghostty' then
-  vim.opt.mousescroll = 'ver:1,hor:1'
-end
-
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.autoindent = true
