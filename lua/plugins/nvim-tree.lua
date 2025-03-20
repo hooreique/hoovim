@@ -6,6 +6,7 @@ return {
     local api = require 'nvim-tree.api'
 
     require('nvim-tree').setup {
+      filters = { git_ignored = false },
       hijack_netrw = false,
 
       ---@param bufnr integer
