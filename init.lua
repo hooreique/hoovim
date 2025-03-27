@@ -240,6 +240,12 @@ vim.keymap.set('n', ',s', function()
   end
 end, o 'Toggle Spell Check')
 
+vim.keymap.set('n', ',c', function()
+  local path = vim.api.nvim_buf_get_name(0)
+  vim.fn.setreg('+', path)
+  vim.notify('Copied: ' .. path, vim.log.levels.INFO)
+end, o 'Copy Path')
+
 -- 현재 버퍼 빼고 전부 지우기
 vim.keymap.set('n', '<Space>W', function()
   local cur = vim.api.nvim_get_current_buf()
