@@ -4,8 +4,8 @@ return {
     dependencies = {
       {
         'williamboman/mason-lspconfig.nvim',
-        dependencies = { 'williamboman/mason.nvim', opts = {} },
-        opts = {},
+        dependencies = { 'williamboman/mason.nvim', config = true },
+        config = true,
       },
       {
         'folke/lazydev.nvim',
