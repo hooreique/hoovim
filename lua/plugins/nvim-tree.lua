@@ -8,6 +8,7 @@ return {
     require('nvim-tree').setup {
       filters = { git_ignored = false },
       hijack_netrw = false,
+      renderer = { group_empty = true },
 
       ---@param bufnr integer
       on_attach = function(bufnr)
