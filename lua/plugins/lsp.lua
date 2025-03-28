@@ -27,6 +27,10 @@ return {
           end
         end,
       },
+      {
+        'kevinhwang91/nvim-ufo',
+        dependencies = 'kevinhwang91/promise-async',
+      },
     },
     config = function()
       local lsp = require 'lspconfig'
@@ -58,6 +62,13 @@ return {
       if vim.fn.executable 'docker-langserver' == 1 then
         lsp.dockerls.setup { capabilities = cap }
       end
+
+      -- Folding
+      -- vim.opt.foldcolumn = '1'
+      vim.opt.foldlevel = 99
+      -- vim.opt.foldlevelstart = 99
+      -- vim.opt.foldenable = true
+      require('ufo').setup()
     end,
   },
 }

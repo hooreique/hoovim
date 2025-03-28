@@ -88,6 +88,8 @@ local nv_maps = {
   { '<PageDown>',     '<C-F>',  'Muggle PageDown' },
 
   { '<Space><Space>', 'zz',     'Scroll for Pos Center' },
+  { '<Space>-',       'zc',     'Fold Close' },
+  { '<Space>=',       'zo',     'Fold Open' },
 
   { 'v',              '"zp',    'Paste from Prime' },
   { 'V',              '"+p',    'Paste from System' },
