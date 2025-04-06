@@ -302,7 +302,7 @@ vim.keymap.set('n', '<Space>pn', ':tabnew | terminal<CR>i',
 -- 하단에 새 터미널 창 열기
 vim.keymap.set('n', '<Space>pp', function()
   vim.cmd 'botright terminal'
-  vim.api.nvim_win_set_height(0, 7)
+  vim.api.nvim_win_set_height(0, 10)
   vim.api.nvim_command 'startinsert'
 end, o 'Open Terminal at Bottom')
 
