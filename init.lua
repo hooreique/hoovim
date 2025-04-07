@@ -74,8 +74,8 @@ local nv_maps = {
   { 'H',              'gg0',    'Top Home' },
   { 'O',              'G$',     'Bot End' },
 
-  { 'l',              'f',      'Next Letter' },
-  { 'L',              'F',      'Prev Letter' },
+  { 'l',              'f',      'Next by Letter' },
+  { 'L',              'F',      'Prev by Letter' },
 
   { 'y',              '<C-O>',  'Jump Backward' },
   { 'Y',              '<C-I>',  'Jump Forward' },
