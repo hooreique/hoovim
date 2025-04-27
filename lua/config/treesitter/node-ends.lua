@@ -90,8 +90,12 @@ end
 ---@return fun() rhs 모든 _supply_ 컨디션에 대하여 묵묵히 _consume_ 하는 함수
 function M.compose(supply, consume)
   return function()
-    local node, fallback = supply()
+    local ok, node, fallback = pcall(supply)
+
+    if not ok then return end
+
     node = node or fallback
+
     if node then consume(node) end
   end
 end
