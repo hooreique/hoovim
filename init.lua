@@ -290,19 +290,23 @@ vim.api.nvim_create_autocmd('TermOpen', {
   end,
 })
 
+-- 터미널 정상화
+vim.api.nvim_create_user_command('MyTerminal', function()
+  local shell = os.getenv 'SHELL' or '/usr/bin/bash'
+  local term  = os.getenv 'TERM' or 'xterm'
+  vim.cmd('term TERM=' .. term .. ' ' .. shell)
+end, {})
+
 vim.keymap.set('n', '<Space>p', '<Nop>', o 'Leading NOP')
 
 -- 현재 창에서 터미널 열기
-vim.keymap.set('n', '<Space>p<CR>', ':terminal<CR>i', o 'Open Terminal Here')
-
--- 새 탭에서 터미널 열기
-vim.keymap.set('n', '<Space>pn', ':tabnew | terminal<CR>i',
-  o 'Open Terminal in New Tab')
+vim.keymap.set('n', '<Space>p<CR>', ':MyTerminal<CR>i', o 'Open Terminal Here')
 
 -- 하단에 새 터미널 창 열기
 vim.keymap.set('n', '<Space>pp', function()
-  vim.cmd 'botright terminal'
+  vim.cmd 'botright new'
   vim.api.nvim_win_set_height(0, 10)
+  vim.cmd 'MyTerminal'
   vim.api.nvim_command 'startinsert'
 end, o 'Open Terminal at Bottom')
 
