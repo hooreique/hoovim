@@ -1,3 +1,13 @@
+if vim.env.SSH_TTY then
+  local copy      = require('vim.ui.clipboard.osc52').copy
+  local paste     = require('vim.ui.clipboard.osc52').paste
+  vim.g.clipboard = {
+    name  = 'OSC 52',
+    copy  = { ['+'] = copy '+', ['*'] = copy '*' },
+    paste = { ['+'] = paste '+', ['*'] = paste '*' },
+  }
+end
+
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.autoindent = true
