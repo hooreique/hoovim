@@ -44,6 +44,14 @@ return {
       lsp.denols.setup { capabilities = cap }
     end
 
+    if vim.fn.executable 'ruff' == 1 then
+      lsp.ruff.setup { capabilities = cap }
+    end
+    -- nixpkgs#basedpyright
+    if vim.fn.executable 'basedpyright-langserver' == 1 then
+      lsp.basedpyright.setup { capabilities = cap }
+    end
+
     if vim.fn.executable 'nil' == 1 then
       lsp.nil_ls.setup { capabilities = cap }
     end
