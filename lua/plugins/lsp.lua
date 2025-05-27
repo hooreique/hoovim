@@ -40,6 +40,10 @@ return {
       lsp.jdtls.setup { capabilities = cap }
     end
 
+    if vim.fn.executable 'typescript-language-server' == 1 then
+      lsp.ts_ls.setup { capabilities = cap }
+    end
+
     if vim.fn.executable 'deno' == 1 then
       lsp.denols.setup { capabilities = cap }
     end
