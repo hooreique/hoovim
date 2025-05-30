@@ -74,6 +74,10 @@ return {
       lsp.dockerls.setup { capabilities = cap }
     end
 
+    if vim.fn.executable 'zk' == 1 then
+      lsp.zk.setup { capabilities = cap }
+    end
+
     -- Folding
     -- vim.opt.foldcolumn = '1'
     vim.opt.foldlevel = 99
