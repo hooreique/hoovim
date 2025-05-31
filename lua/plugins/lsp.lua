@@ -40,7 +40,16 @@ return {
       lsp.jdtls.setup { capabilities = cap }
     end
 
-    if vim.fn.executable 'typescript-language-server' == 1 then
+    if vim.fn.executable 'vue-language-server' == 1 then
+      lsp.volar.setup {
+        capabilities = cap,
+        init_options = { vue = { hybridMode = false } },
+        filetypes = {
+          'javascript', 'javascriptreact', 'typescript', 'typescriptreact',
+          'vue',
+        },
+      }
+    elseif vim.fn.executable 'typescript-language-server' == 1 then
       lsp.ts_ls.setup { capabilities = cap }
     end
 
