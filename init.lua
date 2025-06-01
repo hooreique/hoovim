@@ -22,6 +22,8 @@ vim.opt.scrolloff = 3
 vim.opt.updatetime = 250
 vim.opt.spelllang = { 'en_us', 'cjk' }
 
+vim.diagnostic.config { virtual_text = true }
+
 -- Disable default mappings by _matchit_ built-in package
 vim.g.no_plugin_maps = true
 

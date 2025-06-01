@@ -1,5 +1,5 @@
----@param desc string
----@return vim.keymap.set.Opts
+--- @param desc string
+--- @return vim.keymap.set.Opts
 local function o(desc)
   return {
     noremap = true,
@@ -8,12 +8,14 @@ local function o(desc)
   }
 end
 
+--- @module 'lazy'
+--- @type LazySpec
 return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = function()
-      ---@diagnostic disable-next-line: missing-fields
+      --- @diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup {
         auto_install = true,
         highlight = {

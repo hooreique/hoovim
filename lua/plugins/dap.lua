@@ -1,5 +1,5 @@
----@param desc string
----@return vim.keymap.set.Opts
+--- @param desc string
+--- @return vim.keymap.set.Opts
 local function o(desc)
   return {
     noremap = true,
@@ -8,6 +8,8 @@ local function o(desc)
   }
 end
 
+--- @module 'lazy'
+--- @type LazySpec
 return {
   'rcarriga/nvim-dap-ui',
   dependencies = {
@@ -18,9 +20,9 @@ return {
     local dap = require 'dap'
     local ui = require 'dapui'
 
-    ---@diagnostic disable-next-line: missing-fields
+    --- @diagnostic disable-next-line: missing-fields
     ui.setup {
-      ---@diagnostic disable-next-line: missing-fields
+      --- @diagnostic disable-next-line: missing-fields
       floating = {
         mappings = { close = { '<Esc>' } },
       },

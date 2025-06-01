@@ -1,3 +1,5 @@
+--- @module 'lazy'
+--- @type LazySpec
 return {
   'nvim-tree/nvim-tree.lua',
   version = '*',
@@ -10,10 +12,10 @@ return {
       hijack_netrw = false,
       renderer = { group_empty = true },
 
-      ---@param bufnr integer
+      --- @param bufnr integer
       on_attach = function(bufnr)
-        ---@param desc string
-        ---@return vim.keymap.set.Opts
+        --- @param desc string
+        --- @return vim.keymap.set.Opts
         local function o(desc)
           return {
             buffer = bufnr,

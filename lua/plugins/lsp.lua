@@ -1,97 +1,44 @@
+--- @module 'lazy'
+--- @type LazySpec
 return {
   'neovim/nvim-lspconfig',
-  dependencies = {
-    {
-      'williamboman/mason-lspconfig.nvim',
-      dependencies = { 'williamboman/mason.nvim', config = true },
-      config = true,
-    },
-    {
-      'folke/lazydev.nvim',
-      ft = 'lua', -- only load on lua files
-      opts = {
-        library = {
-          -- See the configuration section for more details
-          -- Load luvit types when the `vim.uv` word is found
-          { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-        }
-      },
-    },
-    'saghen/blink.cmp',
-    {
-      'nvim-java/nvim-java',
-      config = function()
-        if vim.fn.executable 'javac' == 1 and vim.fn.executable 'jdtls' == 1 then
-          require('java').setup {}
-        end
-      end,
-    },
-    {
-      'kevinhwang91/nvim-ufo',
-      dependencies = 'kevinhwang91/promise-async',
-    },
-  },
+  dependencies = 'saghen/blink.cmp',
   config = function()
-    local lsp = require 'lspconfig'
-    local cap = require('blink.cmp').get_lsp_capabilities()
-
-    -- nixpkgs#jdt-language-server
-    if vim.fn.executable 'javac' == 1 and vim.fn.executable 'jdtls' == 1 then
-      lsp.jdtls.setup { capabilities = cap }
-    end
-
     if vim.fn.executable 'vue-language-server' == 1 then
-      lsp.volar.setup {
-        capabilities = cap,
+      vim.lsp.config('vue_ls', {
         init_options = { vue = { hybridMode = false } },
         filetypes = {
           'javascript', 'javascriptreact', 'typescript', 'typescriptreact',
           'vue',
         },
-      }
+      })
+      vim.lsp.enable 'vue_ls'
     elseif vim.fn.executable 'typescript-language-server' == 1 then
-      lsp.ts_ls.setup { capabilities = cap }
+      vim.lsp.config('ts_ls', {})
+      vim.lsp.enable 'ts_ls'
     end
 
-    if vim.fn.executable 'deno' == 1 then
-      lsp.denols.setup { capabilities = cap }
-    end
+    for _, pair in ipairs {
+      { 'denols',       'deno' },
 
-    if vim.fn.executable 'ruff' == 1 then
-      lsp.ruff.setup { capabilities = cap }
-    end
-    -- nixpkgs#basedpyright
-    if vim.fn.executable 'basedpyright-langserver' == 1 then
-      lsp.basedpyright.setup { capabilities = cap }
-    end
+      { 'ruff',         'ruff' },
+      -- pkgs.basedpyright
+      { 'basedpyright', 'basedpyright-langserver' },
 
-    if vim.fn.executable 'nil' == 1 then
-      lsp.nil_ls.setup { capabilities = cap }
-    end
+      { 'nil_ls',       'nil' },
 
-    if vim.fn.executable 'lua-language-server' == 1 then
-      lsp.lua_ls.setup { capabilities = cap }
-    end
+      { 'lua_ls',       'lua-language-server' },
 
-    -- nixpkgs#vscode-langservers-extracted
-    if vim.fn.executable 'vscode-json-language-server' == 1 then
-      lsp.jsonls.setup { capabilities = cap }
-    end
+      -- pkgs.vscode-langservers-extracted
+      { 'jsonls',       'vscode-json-language-server' },
 
-    -- nixpkgs#dockerfile-language-server-nodejs
-    if vim.fn.executable 'docker-langserver' == 1 then
-      lsp.dockerls.setup { capabilities = cap }
+      -- pkgs.dockerfile-language-server-nodejs
+      { 'dockerls',     'docker-langserver' },
+    } do
+      if vim.fn.executable(pair[2]) == 1 then
+        vim.lsp.config(pair[1], {})
+        vim.lsp.enable(pair[1])
+      end
     end
-
-    if vim.fn.executable 'zk' == 1 then
-      lsp.zk.setup { capabilities = cap }
-    end
-
-    -- Folding
-    -- vim.opt.foldcolumn = '1'
-    vim.opt.foldlevel = 99
-    -- vim.opt.foldlevelstart = 99
-    -- vim.opt.foldenable = true
-    require('ufo').setup()
   end,
 }

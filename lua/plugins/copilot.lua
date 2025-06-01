@@ -1,5 +1,5 @@
----@param desc string
----@return vim.keymap.set.Opts
+--- @param desc string
+--- @return vim.keymap.set.Opts
 local function o(desc)
   return {
     noremap = true,
@@ -8,6 +8,8 @@ local function o(desc)
   }
 end
 
+--- @module 'lazy'
+--- @type LazySpec
 return {
   'zbirenbaum/copilot.lua',
   config = function()
