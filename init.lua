@@ -22,8 +22,6 @@ vim.opt.scrolloff = 3
 vim.opt.updatetime = 250
 vim.opt.spelllang = { 'en_us', 'cjk' }
 
-vim.diagnostic.config { virtual_text = true }
-
 -- Disable default mappings by _matchit_ built-in package
 vim.g.no_plugin_maps = true
 
@@ -294,6 +292,16 @@ vim.keymap.set('n', '<Space>f', vim.lsp.buf.format, o 'vim.lsp.buf.format')
 vim.keymap.set('n', ',,', vim.lsp.buf.hover, o 'vim.lsp.buf.hover')
 vim.keymap.set('n', ',d', vim.diagnostic.open_float,
   o 'vim.diagnostic.open_float')
+
+vim.diagnostic.config {
+  severity_sort = true,
+  signs         = { severity = { min = vim.diagnostic.severity.INFO } },
+  virtual_text  = true,
+  virtual_lines = {
+    current_line = true,
+    severity     = { min = vim.diagnostic.severity.INFO },
+  },
+}
 
 -- 터미널 창 구성
 vim.api.nvim_create_autocmd('TermOpen', {
