@@ -26,7 +26,6 @@ end
 --- @type LazySpec
 return {
   'mfussenegger/nvim-jdtls',
-  dependencies = 'neovim/nvim-lspconfig',
   enabled = function()
     -- pkgs.jdk  pkgs.jdt-language-server
     if vim.fn.executable 'javac' == 1 and vim.fn.executable 'jdtls' == 1 then
@@ -46,7 +45,7 @@ return {
     local datadir = root() .. '/.metadata/nvim-jdtls'
 
     vim.api.nvim_create_autocmd("FileType", {
-      pattern = "java",
+      pattern = 'java',
       callback = function()
         require('jdtls').start_or_attach { cmd = { 'jdtls', '-data', datadir } }
       end,
