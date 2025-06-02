@@ -44,7 +44,7 @@ return {
   config = function()
     local datadir = root() .. '/.metadata/nvim-jdtls'
 
-    vim.api.nvim_create_autocmd("FileType", {
+    vim.api.nvim_create_autocmd('FileType', {
       pattern = 'java',
       callback = function()
         require('jdtls').start_or_attach { cmd = { 'jdtls', '-data', datadir } }

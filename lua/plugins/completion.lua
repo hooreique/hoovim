@@ -6,8 +6,8 @@ return {
   dependencies = {
     'rafamadriz/friendly-snippets',
     {
-      "folke/lazydev.nvim",
-      ft = "lua",
+      'folke/lazydev.nvim',
+      ft = 'lua',
 
       --- @module 'lazydev'
       --- @type lazydev.Config
@@ -15,14 +15,14 @@ return {
         --- @module 'lazydev'
         --- @type lazydev.Library.spec[]
         library = {
-          { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+          { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
         },
       },
     },
   },
   version = '1.*',
 
-  -- opts_extend = { "sources.default" }, <- 이거 뭔지 모르겠어서 안 씀
+  -- opts_extend = { 'sources.default' }, <- 이거 뭔지 모르겠어서 안 씀
 
   --- @module 'blink.cmp'
   --- @type blink.cmp.Config
@@ -46,8 +46,8 @@ return {
       default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'cmdline' },
       providers = {
         lazydev = {
-          name = "LazyDev",
-          module = "lazydev.integrations.blink",
+          name = 'LazyDev',
+          module = 'lazydev.integrations.blink',
           score_offset = 100,
         },
       },

@@ -1,7 +1,7 @@
 --- @module 'lazy'
 --- @type LazySpec
 return {
-  "zk-org/zk-nvim",
+  'zk-org/zk-nvim',
   main = 'zk',
   config = true,
   enabled = function()
