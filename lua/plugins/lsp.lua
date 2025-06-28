@@ -56,6 +56,17 @@ return {
       vim.lsp.enable 'ts_ls'
     end
 
+    -- pkgs.svelte-language-server
+    if vim.fn.executable 'svelteserver' == 1 then
+      if vim.fn.executable 'typescript-language-server' == 1 then
+        vim.lsp.enable 'ts_ls'
+        vim.lsp.config('svelte', {})
+        vim.lsp.enable 'svelte'
+      else
+        vim.notify 'svelteserver is executable but typescript-language-server is not.'
+      end
+    end
+
     for _, pair in ipairs {
       { 'denols',       'deno' },
 
@@ -70,8 +81,12 @@ return {
       -- pkgs.vscode-langservers-extracted
       { 'jsonls',       'vscode-json-language-server' },
 
+      { 'yamlls',       'yaml-language-server' },
+
       -- pkgs.dockerfile-language-server-nodejs
       { 'dockerls',     'docker-langserver' },
+
+      { 'tailwindcss',  'tailwindcss-language-server' },
     } do
       if vim.fn.executable(pair[2]) == 1 then
         vim.lsp.config(pair[1], {})
