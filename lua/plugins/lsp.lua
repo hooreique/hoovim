@@ -67,14 +67,6 @@ return {
       end
     end
 
-    -- pkgs.vscode-langservers-extracted
-    if vim.fn.executable 'vscode-html-language-server' == 1 then
-      local cap = vim.lsp.protocol.make_client_capabilities()
-      cap.textDocument.completion.completionItem.snippetSupport = true
-      vim.lsp.config('html', { capabilities = cap })
-      vim.lsp.enable 'html'
-    end
-
     for _, pair in ipairs {
       { 'denols',       'deno' },
 
@@ -87,6 +79,8 @@ return {
       { 'lua_ls',       'lua-language-server' },
 
       -- pkgs.vscode-langservers-extracted
+      { 'html',         'vscode-html-language-server' },
+      { 'cssls',        'vscode-css-language-server' },
       { 'jsonls',       'vscode-json-language-server' },
 
       { 'yamlls',       'yaml-language-server' },
