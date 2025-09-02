@@ -251,6 +251,14 @@ vim.keymap.set('n', ',s', function()
   end
 end, o 'Toggle Spell Check')
 
+vim.keymap.set('n', ',w', function()
+  if vim.api.nvim_get_option_value('wrap', { scope = 'local' }) then
+    vim.cmd 'setlocal nowrap | echo ":setlocal nowrap"'
+  else
+    vim.cmd 'setlocal wrap | echo ":setlocal wrap"'
+  end
+end, o 'Toggle Soft Wrap')
+
 vim.keymap.set('n', ',c', function()
   local path = vim.api.nvim_buf_get_name(0)
   vim.fn.setreg('+', path)
