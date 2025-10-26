@@ -1,4 +1,4 @@
-if vim.env.SSH_TTY then
+if vim.env.SSH_TTY or vim.env.NODE_PTY then
   local copy      = require('vim.ui.clipboard.osc52').copy
   local paste     = require('vim.ui.clipboard.osc52').paste
   vim.g.clipboard = {
