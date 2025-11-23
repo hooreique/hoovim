@@ -67,28 +67,32 @@ return {
       end
     end
 
+    -- pkgs.basedpyright
+    if vim.fn.executable 'basedpyright-langserver' == 1 then
+      vim.lsp.config('basedpyright', { offset_encoding = 'utf-8' })
+      vim.lsp.enable('basedpyright')
+    end
+
     for _, pair in ipairs {
-      { 'denols',       'deno' },
+      { 'denols',      'deno' },
 
-      { 'ruff',         'ruff' },
-      -- pkgs.basedpyright
-      { 'basedpyright', 'basedpyright-langserver' },
+      { 'ruff',        'ruff' },
 
-      { 'nil_ls',       'nil' },
+      { 'nil_ls',      'nil' },
 
-      { 'lua_ls',       'lua-language-server' },
+      { 'lua_ls',      'lua-language-server' },
 
       -- pkgs.vscode-langservers-extracted
-      { 'html',         'vscode-html-language-server' },
-      { 'cssls',        'vscode-css-language-server' },
-      { 'jsonls',       'vscode-json-language-server' },
+      { 'html',        'vscode-html-language-server' },
+      { 'cssls',       'vscode-css-language-server' },
+      { 'jsonls',      'vscode-json-language-server' },
 
-      { 'yamlls',       'yaml-language-server' },
+      { 'yamlls',      'yaml-language-server' },
 
       -- pkgs.dockerfile-language-server-nodejs
-      { 'dockerls',     'docker-langserver' },
+      { 'dockerls',    'docker-langserver' },
 
-      { 'tailwindcss',  'tailwindcss-language-server' },
+      { 'tailwindcss', 'tailwindcss-language-server' },
     } do
       if vim.fn.executable(pair[2]) == 1 then
         vim.lsp.config(pair[1], {})
