@@ -93,6 +93,8 @@ return {
       { 'dockerls',    'docker-langserver' },
 
       { 'tailwindcss', 'tailwindcss-language-server' },
+
+      { 'unocss',      'unocss-language-server' },
     } do
       if vim.fn.executable(pair[2]) == 1 then
         vim.lsp.config(pair[1], {})
