@@ -56,6 +56,12 @@ return {
       vim.lsp.enable 'ts_ls'
     end
 
+    if vim.fn.executable 'deno' == 1 and
+        vim.fn.executable 'typescript-language-server' == 0 then
+      vim.lsp.config('denols', {})
+      vim.lsp.enable 'denols'
+    end
+
     -- pkgs.svelte-language-server
     if vim.fn.executable 'svelteserver' == 1 then
       if vim.fn.executable 'typescript-language-server' == 1 then
@@ -74,8 +80,6 @@ return {
     end
 
     for _, pair in ipairs {
-      { 'denols',      'deno' },
-
       { 'ruff',        'ruff' },
 
       { 'nil_ls',      'nil' },
