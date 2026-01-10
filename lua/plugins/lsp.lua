@@ -86,6 +86,8 @@ return {
 
       { 'lua_ls',      'lua-language-server' },
 
+      { 'zk',          'zk' },
+
       -- pkgs.vscode-langservers-extracted
       { 'html',        'vscode-html-language-server' },
       { 'cssls',       'vscode-css-language-server' },
