@@ -12,6 +12,7 @@ end
 --- @type LazySpec
 return {
   'folke/snacks.nvim',
+  priority = 1000,
   config = function()
     require 'snacks'.setup {
       words = { enabled = true },
