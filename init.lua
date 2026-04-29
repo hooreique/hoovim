@@ -140,6 +140,9 @@ local n_maps = {
   { 'd',            '"zdd',                          'Cut to Prime' },
   { 'D',            '"+dd',                          'Cut to System' },
 
+  { '<Space>v',     '"zP',                           'Paste from Prime (Before)' },
+  { '<Space>V',     '"+P',                           'Paste from System (Before)' },
+
   { '<BS>',         'dhi',                           'Muggle BS' },
   { '<Del>',        'xi',                            'Muggle Del' },
 
