@@ -95,6 +95,8 @@ return {
 
       { 'yamlls',      'yaml-language-server' },
 
+      { 'lemminx',     'lemminx' },
+
       -- pkgs.dockerfile-language-server-nodejs
       { 'dockerls',    'docker-langserver' },
 
